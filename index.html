@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JALIN SAJAK COACH STPM — Dari Persoalan kepada Puisi</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Playfair Display / Serif untuk petikan puitis -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- jsPDF CDN untuk muat turun dokumen PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              800: '#141d38',
+              900: '#0b1126',
+              950: '#070a18',
+            },
+            gold: {
+              400: '#ecc96b',
+              500: '#d4af37',
+              600: '#b89428',
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Lora', 'serif'],
+            display: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #080d1e;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fce588 0%, #d4af37 60%, #b89428 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .focus-card-glow {
+      box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-navy-950 text-slate-100 antialiased selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- ==================== HEADER UTAMA ==================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/95 backdrop-blur-md border-b border-slate-800 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-gold-500 to-amber-300 flex items-center justify-center text-navy-950 shadow-md">
+          <i class="fa-solid fa-feather-pointed text-lg"></i>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-gold-400 font-semibold block">KMK STPM</span>
+          <h1 class="text-sm sm:text-base font-bold font-display tracking-wide text-white leading-none">JALIN SAJAK COACH</h1>
+        </div>
+      </div>
+
+      <!-- Indikator Mod & Tindakan Navigasi -->
+      <div class="flex items-center space-x-2 text-xs">
+        <span id="badge-mode" class="hidden px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700">
+          Mod: -
+        </span>
+        <button onclick="openModal('modal-jalin-info')" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="Panduan Konsep JALIN">
+          <i class="fa-solid fa-compass text-gold-400"></i>
+          <span class="hidden sm:inline">Konsep JALIN</span>
+        </button>
+        <button onclick="openModal('modal-skema-info')" class="px-2.5 py-1.5 rounded-lg bg-navy-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5" title="Skema 25 Markah STPM">
+          <i class="fa-solid fa-award text-amber-400"></i>
+          <span class="hidden sm:inline">Skema 25M</span>
+        </button>
+        <button onclick="confirmResetProgress()" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 transition" title="Mula Semula">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== KANDUNGAN UTAMA ==================== -->
+  <main class="flex-grow flex flex-col max-w-4xl w-full mx-auto p-4 sm:p-6 justify-center">
+
+    <!-- 1. PANDANGAN: HALAMAN UTAMA -->
+    <section id="view-home" class="view-panel active flex flex-col items-center justify-center py-6 sm:py-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs mb-3">
+        <i class="fa-solid fa-scroll"></i>
+        <span>Kesusasteraan Melayu Komunikatif STPM</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
+        JALIN SAJAK COACH <span class="gold-gradient-text">STPM</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gold-400/90 font-serif italic mt-1.5">
+        "Dari Persoalan kepada Puisi"
+      </p>
+      <p class="max-w-xl text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
+        Bimbingan menulis sajak 35 baris (5 rangkap) secara berperingkat di atas kertas melalui sistem progresif satu soalan pada satu masa.
+      </p>
+
+      <!-- Peringatan Mesra Pelajar -->
+      <div class="mt-6 p-3.5 rounded-xl bg-navy-900/80 border border-slate-800 text-xs text-slate-300 max-w-lg text-left flex items-start gap-3">
+        <i class="fa-solid fa-pen-nib text-gold-400 text-base mt-0.5 shrink-0"></i>
+        <div>
+          <span class="font-semibold text-white">Sediakan sehelai kertas dan pen.</span>
+          <p class="mt-0.5 text-slate-400 leading-normal">Aplikasi ini memandu minda anda baris demi baris menggunakan Teknik JALIN. Anda akan menulis sajak asli anda sendiri di atas kertas.</p>
+        </div>
+      </div>
+
+      <!-- Pilihan Mod Pembelajaran -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mt-6">
+        <!-- Mod A -->
+        <div onclick="selectMode('pemulihan')" class="group cursor-pointer p-5 rounded-2xl bg-navy-900 border border-slate-800 hover:border-sky-500/60 hover:shadow-lg transition text-left">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800">MOD A</span>
+            <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-sky-400 group-hover:translate-x-1 transition"></i>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-sky-300 transition">Pemulihan & Bimbingan Terbimbing</h3>
+          <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+            Arahan mudah, soalan berstruktur, serta bank diksi dan contoh bagi membantu anda membina baris dengan yakin.
+          </p>
+        </div>
+
+        <!-- Mod B -->
+        <div onclick="selectMode('pengayaan')" class="group cursor-pointer p-5 rounded-2xl bg-navy-900 border border-slate-800 hover:border-gold-500/60 hover:shadow-lg transition text-left">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gold-400 bg-gold-500/20 px-2 py-0.5 rounded border border-gold-500/30">MOD B</span>
+            <i class="fa-solid fa-arrow-right text-slate-600 group-hover:text-gold-400 group-hover:translate-x-1 transition"></i>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-gold-300 transition">Pengayaan & Pengukuhan</h3>
+          <p class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+            Soalan pemikiran terbuka untuk mencabar daya kreatif, metafora tinggi, dan kedalaman penghayatan falsafah anda.
+          </p>
+        </div>
+      </div>
+
+      <!-- Simulasi Ringkas -->
+      <div class="w-full max-w-2xl mt-3">
+        <button onclick="selectMode('simulasi')" class="w-full py-2.5 px-4 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-stopwatch text-amber-400"></i>
+          <span>Mod Simulasi STPM (Pemasa Peperiksaan Tanpa Bantuan Bank Kata)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. PANDANGAN: PILIH TEMA SAJAK -->
+    <section id="view-theme" class="view-panel hidden flex flex-col max-w-2xl mx-auto w-full py-2">
+      <div class="border-b border-slate-800 pb-3 mb-4 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400">Langkah 1</span>
+          <h2 class="text-xl font-bold text-white font-display">Pilih Tema Sajak</h2>
+        </div>
+        <button onclick="navigateTo('home')" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+          <i class="fa-solid fa-chevron-left text-[10px]"></i> Laman Utama
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-300 mb-4">Pilih satu tema di bawah untuk memuatkan peta 5 persoalan berkesinambungan:</p>
+
+      <div class="space-y-2.5" id="themes-list-container">
+        <!-- Disuntik melalui JS -->
+      </div>
+
+      <!-- Tema Sendiri -->
+      <div class="mt-4 p-3.5 rounded-xl bg-navy-900/60 border border-slate-800 space-y-2 text-xs">
+        <div class="flex items-center gap-2">
+          <input type="radio" id="radio-custom-theme" name="theme-radio" onchange="toggleCustomTheme(true)" class="accent-gold-500">
+          <label for="radio-custom-theme" class="font-bold text-slate-200 cursor-pointer">Gunakan Tema Sendiri / Soalan Peperiksaan Percubaan</label>
+        </div>
+        <div id="custom-theme-box" class="hidden pl-5 space-y-2 pt-1">
+          <input type="text" id="input-custom-title" placeholder="Tajuk tema (cth: Semangat Kejiranan Menjamin Kemakmuran)" class="w-full px-3 py-2 rounded-lg bg-navy-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-gold-500">
+        </div>
+      </div>
+
+      <button onclick="confirmThemeAndGoToPlanner()" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-600 hover:to-amber-600 text-navy-950 font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+        <span>Seterusnya: Peta Pemikiran 5 Rangkap</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </section>
+
+    <!-- 3. PANDANGAN: PETA PEMIKIRAN SAJAK (5 PERSOALAN POSITIF & FUNGSI NARATIF) -->
+    <section id="view-planner" class="view-panel hidden flex flex-col max-w-2xl mx-auto w-full py-2">
+      <div class="border-b border-slate-800 pb-3 mb-4 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400">Langkah 2 — Peta Pemikiran</span>
+          <h2 class="text-xl font-bold text-white font-display">Kesinambungan 5 Rangkap</h2>
+        </div>
+        <button onclick="navigateTo('theme')" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+          <i class="fa-solid fa-chevron-left text-[10px]"></i> Tukar Tema
+        </button>
+      </div>
+
+      <div class="p-3 rounded-xl bg-navy-900 border border-slate-800 text-xs text-slate-300 mb-4 flex items-start gap-2.5">
+        <i class="fa-solid fa-route text-gold-400 mt-0.5"></i>
+        <div>
+          <span class="font-bold text-white">Alur Perkembangan Fikiran (35 Baris):</span>
+          <p class="text-slate-400 mt-0.5">Setiap rangkap mempunyai peranan pemikiran yang unik. Anda boleh menyunting persoalan sekiranya perlu sebelum mula menulis.</p>
+        </div>
+      </div>
+
+      <!-- 5 Kad Peta Pemikiran Rangkap -->
+      <div class="space-y-2.5" id="roadmap-cards-container">
+        <!-- Dijana dinamik -->
+      </div>
+
+      <button onclick="startWritingStanza(1, 1)" class="mt-6 w-full py-3 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-600 hover:to-amber-600 text-navy-950 font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+        <span>Mula Menulis: Rangkap 1, Baris 1</span>
+        <i class="fa-solid fa-pen-fancy"></i>
+      </button>
+    </section>
+
+    <!-- 4. PANDANGAN UTAMA: PEMBIMBING JALIN (SATU SKRIN, SATU TUGASAN) -->
+    <section id="view-coach" class="view-panel hidden flex flex-col max-w-2xl mx-auto w-full py-1">
+      
+      <!-- Bar Kemajuan Minimalis: Rangkap & Baris -->
+      <div class="flex items-center justify-between text-xs mb-3 text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="text-gold-400 font-bold font-mono text-sm" id="progress-indicator-text">Rangkap 1/5 — Baris 1/7</span>
+          <span class="text-[10px] uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold" id="coach-mode-pill">Mod A</span>
+        </div>
+        <span class="text-[11px] font-mono text-slate-400" id="total-baris-counter">Kemajuan: 1/35</span>
+      </div>
+
+      <!-- Bar Indikator Visual 5 Rangkap Ringkas -->
+      <div class="grid grid-cols-5 gap-1.5 mb-4" id="stanzas-progress-pills">
+        <!-- 5 Pill ringkas R1-R5 -->
+      </div>
+
+      <!-- KAD UTAMA TUGASAN (SATU SKRIN, SATU TUGASAN) -->
+      <div class="bg-navy-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl focus-card-glow space-y-5">
+        
+        <!-- Tajuk Konteks Rangkap -->
+        <div class="border-b border-slate-800/80 pb-3 flex items-start justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-gold-400 uppercase tracking-wider" id="current-stanza-header">Rangkap 1: Membuka Pemikiran</span>
+              <span class="text-[10px] px-2 py-0.2 rounded bg-navy-950 text-slate-400 border border-slate-800 font-mono" id="current-jalin-pill">J — Judul</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-200 mt-1" id="current-stanza-question-text">
+              Bersaing secara sihat.
+            </p>
+          </div>
+          <span class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-mono font-bold text-xs shrink-0" id="current-line-badge">
+            B1
+          </span>
+        </div>
+
+        <!-- Soalan Pembimbing Utama (Teras Fikiran) -->
+        <div class="space-y-2 py-1">
+          <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-comment-dots text-sky-400"></i>
+            <span>Soalan Pembimbing Untuk Fikiran Anda:</span>
+          </span>
+          <h3 class="text-base sm:text-xl font-serif text-white italic leading-relaxed" id="coach-main-question">
+            "Apakah suasana gelanggang sebelum pertandingan bermula?"
+          </h3>
+          <p class="text-xs text-slate-400 leading-normal" id="coach-sub-guidance">
+            Gambarkan keadaan padang, debaran di dada, atau sinaran matahari fajar di atas kertas anda.
+          </p>
+        </div>
+
+        <!-- Ruang Catatan Pilihan (Pelajar menulis atas kertas, catatan di sini hanya sekiranya mahu draf) -->
+        <div class="space-y-1.5 pt-1">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-slate-400 flex items-center gap-1">
+              <i class="fa-solid fa-pencil text-gold-400"></i>
+              <span>Tulis baris ini di atas kertas anda. (Pilihan: Catat baris di sini)</span>
+            </span>
+          </div>
+          <input type="text" id="input-coach-line-draft" placeholder="Taipkan baris sajak anda di sini sekiranya ingin rekod digital..." class="w-full px-3.5 py-2.5 rounded-xl bg-navy-950 border border-slate-700 text-xs sm:text-sm text-white focus:outline-none focus:border-gold-500 transition">
+        </div>
+
+        <!-- Panel Petunjuk 3 Tahap (Buka / Tutup Secara Mudah) -->
+        <div id="coach-hint-box" class="hidden rounded-xl bg-navy-950 border border-gold-500/30 p-4 space-y-3 text-xs">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="font-bold text-gold-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-lightbulb"></i> Petunjuk Bimbingan Baris Ini
+            </span>
+            <button onclick="toggleHintBox()" class="text-slate-400 hover:text-white text-[11px]">
+              Tutup <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Tab 3 Tahap Ringkas -->
+          <div class="flex border-b border-slate-800 text-[11px]">
+            <button onclick="switchHintLevel(1)" id="btn-hint-lvl-1" class="flex-1 py-1.5 font-bold text-gold-400 border-b-2 border-gold-400">Tahap 1: Rangsangan</button>
+            <button onclick="switchHintLevel(2)" id="btn-hint-lvl-2" class="flex-1 py-1.5 font-bold text-slate-400 hover:text-slate-200">Tahap 2: Bank Diksi</button>
+            <button onclick="switchHintLevel(3)" id="btn-hint-lvl-3" class="flex-1 py-1.5 font-bold text-slate-400 hover:text-slate-200">Tahap 3: Contoh Asli</button>
+          </div>
+
+          <div id="hint-lvl-content-1" class="text-slate-300 leading-relaxed">
+            <!-- Rangsangan -->
+          </div>
+          <div id="hint-lvl-content-2" class="hidden space-y-2">
+            <span class="text-slate-400 block text-[10px] uppercase font-bold">Cadangan Diksi Sesuai:</span>
+            <div class="flex flex-wrap gap-1.5" id="hint-diksi-tags"></div>
+          </div>
+          <div id="hint-lvl-content-3" class="hidden space-y-1.5">
+            <p class="font-serif italic text-gold-200 text-xs sm:text-sm p-2.5 rounded-lg bg-navy-900 border border-slate-800" id="hint-example-quote">
+              "Di laman gelanggang bersimbah mentari pagi,"
+            </p>
+            <p class="text-[11px] text-slate-400" id="hint-example-explanation">
+              Contoh ini melukiskan suasana tempat pertandingan tanpa menyatakan perkataan 'persaingan' secara langsung.
+            </p>
+            <p class="text-[10px] text-amber-400 italic">Peringatan: Gunakan ungkapan anda sendiri di atas kertas.</p>
+          </div>
+        </div>
+
+        <!-- Butang Tindakan Utama (Besar & Jelas Pada Telefon Pintar) -->
+        <div class="pt-2 space-y-2.5">
+          <button onclick="markLineDoneAndAdvance()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-check"></i>
+            <span>SAYA SUDAH TULIS — SETERUSNYA</span>
+          </button>
+
+          <div class="flex items-center gap-2">
+            <button onclick="toggleHintBox()" id="btn-trigger-hint" class="flex-1 py-2.5 px-3 rounded-xl bg-navy-800 hover:bg-slate-700 text-gold-300 border border-gold-500/30 text-xs font-semibold transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles text-gold-400"></i>
+              <span>Perlukan Petunjuk</span>
+            </button>
+            <button onclick="goToPreviousLine()" id="btn-back-step" class="py-2.5 px-4 rounded-xl bg-navy-950 hover:bg-slate-800 text-slate-400 text-xs border border-slate-800 transition">
+              <i class="fa-solid fa-arrow-left"></i> Kembali
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Butang Ke Semakan Penuh -->
+      <div class="mt-4 text-center">
+        <button onclick="navigateTo('review')" class="text-xs text-slate-400 hover:text-gold-400 transition inline-flex items-center gap-1">
+          <i class="fa-solid fa-clipboard-check"></i> Semak Keseluruhan Sajak & Skema 25M
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. PANDANGAN: JAMBATAN PERALIHAN ANTARA RANGKAP -->
+    <section id="view-bridge" class="view-panel hidden flex flex-col max-w-xl mx-auto w-full py-6 text-center">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-4">
+        <i class="fa-solid fa-check-double"></i>
+      </div>
+
+      <span class="text-xs font-bold uppercase tracking-wider text-emerald-400" id="bridge-complete-tag">Rangkap 1 Telah Siap Ditulis!</span>
+      <h3 class="text-xl sm:text-2xl font-bold text-white font-display mt-1" id="bridge-title">Bina Jambatan ke Rangkap Berikutnya</h3>
+      
+      <!-- Kad Refleksi Jambatan Idea -->
+      <div class="mt-5 p-5 rounded-2xl bg-navy-900 border border-slate-800 text-left space-y-3">
+        <div class="flex items-center gap-2 text-gold-400 text-xs font-bold">
+          <i class="fa-solid fa-bridge"></i> Pertautan Idea Antara Rangkap:
+        </div>
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif italic" id="bridge-narrative-text">
+          "Persaingan sihat memerlukan kesediaan memahami keadaan orang lain. Bagaimanakah sikap bertolak ansur dapat digambarkan dalam perlakuan seterusnya?"
+        </p>
+        <div class="p-3 rounded-xl bg-navy-950 border border-slate-800 text-xs">
+          <span class="text-slate-400 block text-[10px] uppercase font-bold">Persoalan Positif Rangkap Baharu:</span>
+          <span class="font-bold text-amber-300 text-sm" id="bridge-next-target-question">Rangkap 2: Tolak Ansur</span>
+        </div>
+      </div>
+
+      <button onclick="advanceToNextStanzaAfterBridge()" class="mt-6 w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 hover:from-gold-600 hover:to-amber-600 text-navy-950 font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+        <span>Mula Menulis Rangkap Seterusnya</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </section>
+
+    <!-- 6. PANDANGAN: SKEMA PEMARKAHAN STPM 25 MARKAH (SEMAKAN SAJAK LENGKAP) -->
+    <section id="view-review" class="view-panel hidden flex flex-col max-w-3xl mx-auto w-full py-2">
+      <div class="border-b border-slate-800 pb-3 mb-4 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400">Penilaian Kendiri STPM</span>
+          <h2 class="text-xl font-bold text-white font-display">Semakan Skema 25 Markah</h2>
+        </div>
+        <button onclick="navigateTo('coach')" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+          <i class="fa-solid fa-pen"></i> Terus Menulis
+        </button>
+      </div>
+
+      <!-- Ringkasan Markah -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-4 text-center">
+        <div class="p-3 rounded-xl bg-navy-900 border border-slate-800">
+          <span class="text-[10px] text-slate-400 block">Kreativiti (A)</span>
+          <span class="text-lg font-bold font-mono text-gold-400" id="score-kreativiti">0 / 3</span>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-900 border border-slate-800">
+          <span class="text-[10px] text-slate-400 block">Persoalan (B)</span>
+          <span class="text-lg font-bold font-mono text-gold-400" id="score-persoalan">0 / 8</span>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-900 border border-slate-800">
+          <span class="text-[10px] text-slate-400 block">Teknik (C)</span>
+          <span class="text-lg font-bold font-mono text-gold-400" id="score-teknik">0 / 6</span>
+        </div>
+        <div class="p-3 rounded-xl bg-navy-900 border border-slate-800">
+          <span class="text-[10px] text-slate-400 block">Gaya Bahasa (D)</span>
+          <span class="text-lg font-bold font-mono text-gold-400" id="score-gaya">0 / 8</span>
+        </div>
+      </div>
+
+      <!-- 4 Bahagian Skema -->
+      <div class="space-y-4 text-xs">
+        
+        <!-- A. Kreativiti -->
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-center font-bold text-slate-200">
+            <span>A. Kreativiti (3 Markah)</span>
+            <span class="font-mono text-gold-400" id="subtotal-a">0/3</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-slate-300">A1. Tajuk Sajak Bersesuaian Tema (1m)</span>
+              <select id="sel-a1" onchange="calculateRubricScores()" class="bg-navy-950 border border-slate-700 rounded px-2 py-1 text-white">
+                <option value="1">Sesuai (1m)</option>
+                <option value="0">Tiada / Kurang (0m)</option>
+              </select>
+            </div>
+            <input type="text" id="final-poem-title" placeholder="Masukkan tajuk sajak anda di atas kertas..." class="w-full px-3 py-1.5 rounded-lg bg-navy-950 border border-slate-700 text-white">
+            <div class="flex items-center justify-between gap-2 pt-1">
+              <span class="text-slate-300">A2. Kesinambungan Idea Antara Baris & Rangkap (2m)</span>
+              <select id="sel-a2" onchange="calculateRubricScores()" class="bg-navy-950 border border-slate-700 rounded px-2 py-1 text-white">
+                <option value="2">Jelas & Berkembang (2m)</option>
+                <option value="1">Kurang Jelas (1m)</option>
+                <option value="0">Tiada (0m)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- B. Persoalan -->
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-center font-bold text-slate-200">
+            <span>B. Persoalan (8 Markah — 4 Persoalan Berbeza x 2m)</span>
+            <span class="font-mono text-gold-400" id="subtotal-b">0/8</span>
+          </div>
+          <div class="space-y-2" id="rubric-b-list">
+            <!-- 4 persoalan dinilai kendiri -->
+          </div>
+        </div>
+
+        <!-- C. Teknik Penulisan -->
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-center font-bold text-slate-200">
+            <span>C. Teknik Penulisan (6 Markah)</span>
+            <span class="font-mono text-gold-400" id="subtotal-c">0/6</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800">
+              <span class="block text-slate-400 mb-1">C1. Diksi Bertema</span>
+              <select id="sel-c1" onchange="calculateRubricScores()" class="w-full bg-navy-900 border border-slate-700 rounded p-1 text-white">
+                <option value="2">≥ 5 Kata Bertema (2m)</option>
+                <option value="1">1–4 Kata (1m)</option>
+              </select>
+            </div>
+            <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800">
+              <span class="block text-slate-400 mb-1">C2. Bilangan Baris (30–40)</span>
+              <input type="number" id="inp-lines-count" value="35" min="1" max="50" onchange="calculateRubricScores()" class="w-full bg-navy-900 border border-slate-700 rounded p-1 text-center text-gold-400 font-bold">
+            </div>
+            <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800">
+              <span class="block text-slate-400 mb-1">C3. Bilangan Rangkap (≥4)</span>
+              <input type="number" id="inp-stanzas-count" value="5" min="1" max="10" onchange="calculateRubricScores()" class="w-full bg-navy-900 border border-slate-700 rounded p-1 text-center text-gold-400 font-bold">
+            </div>
+          </div>
+        </div>
+
+        <!-- D. Gaya Bahasa -->
+        <div class="p-4 rounded-xl bg-navy-900 border border-slate-800 space-y-3">
+          <div class="flex justify-between items-center font-bold text-slate-200">
+            <span>D. Gaya Bahasa (8 Markah — 4 JENIS Berbeza x 2m)</span>
+            <span class="font-mono text-gold-400" id="subtotal-d">0/8</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="rubric-d-slots">
+            <!-- 4 Slot Pilihan Gaya Bahasa -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Kad Jumlah Keseluruhan -->
+      <div class="mt-6 p-4 rounded-2xl bg-gradient-to-r from-navy-900 to-navy-800 border border-gold-500/30 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-gold-400">Anggaran Skor Latihan</span>
+          <h4 class="text-lg font-bold text-white font-display">Jumlah: <span id="final-total-score" class="gold-gradient-text font-mono text-xl">0 / 25</span></h4>
+        </div>
+        <button onclick="saveAndFinishSession()" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-xs shadow-md transition flex items-center gap-1.5">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Simpan Latihan</span>
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-auto border-t border-slate-800/80 bg-navy-950 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-slate-400">
+        <i class="fa-solid fa-feather-pointed text-gold-400"></i>
+        <span>JALIN SAJAK COACH STPM &copy; 2026</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1RiQyIx7QqR14_9wM5Y6sE-bke3OAZOsu" 
+          alt="Foto Pembangun - Nuraidah binti Mustapah" 
+          class="w-9 h-9 rounded-full object-cover border-2 border-gold-500 shadow-md shadow-gold-500/20"
+          onerror="this.onerror=null; this.src='https://placehold.co/80x80/141d38/d4af37?text=NM';"
+        />
+        <p class="text-left leading-tight">
+          Dibangunkan oleh <strong class="text-slate-300 font-medium">Nuraidah binti Mustapah</strong><br>
+          <span class="text-slate-400 text-[11px]">Guru Akademik Tingkatan 6 — SMK Tamparuli</span>
+        </p>
+      </div>
+      <div class="text-[11px] text-slate-500">
+        Teknik JALIN: J-A-L-I-N
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL PANDUAN JALIN & SKEMA ==================== -->
+  <div id="modal-jalin-info" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-lg w-full p-5 shadow-2xl space-y-3 max-h-[90vh] overflow-y-auto custom-scroll text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <h3 class="text-sm font-bold text-white font-display flex items-center gap-1.5">
+          <i class="fa-solid fa-compass text-gold-400"></i> Konsep Teknik JALIN
+        </h3>
+        <button onclick="closeModal('modal-jalin-info')" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="text-slate-300">Teknik JALIN ialah kerangka pemikiran membina baris sajak mengikut 5 fasa puitis:</p>
+      <div class="space-y-2">
+        <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800"><strong class="text-gold-400">J — Judul Persoalan:</strong> Menentukan fokus nilai rangkap.</div>
+        <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800"><strong class="text-sky-400">A — Arah Pemikiran:</strong> Melukiskan suasana atau tindakan berkaitan.</div>
+        <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800"><strong class="text-purple-400">L — Lambang & Imejan:</strong> Memilih objek atau simbol alam.</div>
+        <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800"><strong class="text-amber-400">I — Impak / Kesan:</strong> Menunjukkan akibat atau getar batin.</div>
+        <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800"><strong class="text-emerald-400">N — Natijah:</strong> Mengunci rangkap dengan penegasan puitis.</div>
+      </div>
+      <button onclick="closeModal('modal-jalin-info')" class="w-full py-2 rounded-lg bg-slate-800 text-white font-semibold">Tutup</button>
+    </div>
+  </div>
+
+  <div id="modal-skema-info" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-slate-700 rounded-2xl max-w-lg w-full p-5 shadow-2xl space-y-3 max-h-[90vh] overflow-y-auto custom-scroll text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <h3 class="text-sm font-bold text-white font-display flex items-center gap-1.5">
+          <i class="fa-solid fa-award text-amber-400"></i> Skema 25 Markah STPM
+        </h3>
+        <button onclick="closeModal('modal-skema-info')" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-2 text-slate-300">
+        <div class="p-2 rounded bg-navy-950"><strong>A. Kreativiti (3 Markah):</strong> Tajuk (1m) + Kesinambungan idea (2m).</div>
+        <div class="p-2 rounded bg-navy-950"><strong>B. Persoalan (8 Markah):</strong> 4 persoalan berbeza yang jelas (4 x 2m).</div>
+        <div class="p-2 rounded bg-navy-950"><strong>C. Teknik Penulisan (6 Markah):</strong> Diksi (2m) + 30–40 baris (2m) + ≥4 rangkap (2m).</div>
+        <div class="p-2 rounded bg-navy-950"><strong>D. Gaya Bahasa (8 Markah):</strong> 4 jenis gaya bahasa berlainan (4 x 2m).</div>
+      </div>
+      <button onclick="closeModal('modal-skema-info')" class="w-full py-2 rounded-lg bg-slate-800 text-white font-semibold">Tutup</button>
+    </div>
+  </div>
+
+  <!-- Modal Pengesahan Simpan Latihan -->
+  <div id="modal-save-success" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-navy-900 border border-gold-500/40 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 text-xs text-center">
+      <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 flex items-center justify-center text-2xl mx-auto">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-white font-display">Latihan Berjaya Disimpan!</h3>
+        <p class="text-slate-300 text-xs mt-1">Data kemajuan dan anggaran skor anda telah selamat direkodkan ke dalam storan pelayar ini.</p>
+      </div>
+
+      <div class="p-3.5 rounded-xl bg-navy-950 border border-slate-800 text-left space-y-1.5 font-mono text-[11px]">
+        <div class="flex justify-between text-slate-400">
+          <span>Tajuk:</span>
+          <span class="text-white font-sans font-semibold" id="modal-save-title">-</span>
+        </div>
+        <div class="flex justify-between text-slate-400">
+          <span>Tema:</span>
+          <span class="text-amber-300 font-sans" id="modal-save-theme">-</span>
+        </div>
+        <div class="flex justify-between text-slate-400 border-t border-slate-800 pt-1">
+          <span>Anggaran Skor STPM:</span>
+          <span class="text-gold-400 font-bold" id="modal-save-score">0 / 25</span>
+        </div>
+      </div>
+
+      <div class="space-y-2 pt-1">
+        <button onclick="downloadPoemPDF()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-700 to-red-600 hover:from-rose-800 hover:to-red-700 text-white border border-rose-500/50 font-semibold transition flex items-center justify-center gap-2 shadow-md">
+          <i class="fa-solid fa-file-pdf text-rose-200 text-sm"></i>
+          <span>Muat Turun Ringkasan Latihan (PDF)</span>
+        </button>
+        <button onclick="closeModal('modal-save-success')" class="w-full py-2.5 px-4 rounded-xl bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold transition">
+          Selesai & Tutup
+        </button>
+      </div>
+      <p class="text-[10px] text-slate-500 italic">Peringatan: Sila serahkan salinan tulisan tangan anda kepada guru KMK untuk penilaian muktamad.</p>
+    </div>
+  </div>
+
+  <!-- Toast Notifikasi Ringkas -->
+  <div id="toast-notify" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-navy-800 border border-gold-500/50 shadow-2xl text-xs text-white">
+      <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+      <span id="toast-text">Kemajuan telah disimpan.</span>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT: ENJIN BIMBINGAN PROGRESIF V2 ==================== -->
+  <script>
+    /**
+     * JALIN SAJAK COACH STPM V2
+     * Enjin Bimbingan Progresif Khusus Setiap Rangkap
+     * Pembangun: Nuraidah binti Mustapah
+     */
+
+    // --- PANGKALAN DATA LENGKAP: 5 RANGKAP KHUSUS (35 LANGKAH BERBEZA) ---
+    const THEMES_V2 = {
+      'kesukanan': {
+        id: 'kesukanan',
+        title: 'Semangat Kesukanan',
+        desc: 'Membimbing pelajar menghayati persaingan sihat, tolak ansur, saling menghormati pihak lawan, kerjasama berpasukan, dan semangat setiakawan yang berkekalan.',
+        stanzas: [
+          {
+            num: 1,
+            role: 'Membuka Pemikiran',
+            issue: 'Bersaing secara sihat.',
+            bridgePrompt: 'Persaingan sihat memerlukan kesediaan memahami keadaan orang lain. Bagaimanakah sikap bertolak ansur dapat digambarkan dalam perlakuan seterusnya?',
+            lines: [
+              {
+                jalin: 'J — Judul Persoalan',
+                q: 'Apakah suasana gelanggang sebelum pertandingan bermula?',
+                sub: 'Gambarkan keadaan padang, deru angin, atau keheningan tekad di wajah para peserta.',
+                t1: 'Bayangkan fajar yang menyinari rumput hijau padang atau garisan putih yang menanti derap kasut.',
+                diksi: ['gelanggang', 'fajar', 'garisan', 'debar', 'padang', 'mentari'],
+                contoh: 'Di dada gelanggang yang terbentang hening,',
+                ulasan: 'Membuka sajak dengan suasana tempat persaingan secara visual tanpa ungkapan langsung.'
+              },
+              {
+                jalin: 'A — Arah Pemikiran',
+                q: 'Bagaimanakah para peserta bersedia menghadapi cabaran?',
+                sub: 'Tunjukkan perlakuan fizikal yang memperlihatkan kesungguhan dan disiplin diri.',
+                t1: 'Gambarkan ikatan tali kasut yang dikemaskan atau langkah tertib melangkah ke tengah medan.',
+                diksi: ['tali kasut', 'derap langkah', 'tekad', 'berdiri', 'tertib', 'nafas'],
+                contoh: 'sepasang langkah kemas merapatkan tekad di dada,',
+                ulasan: 'Memperluas baris pertama dengan kesiapsiagaan para peserta.'
+              },
+              {
+                jalin: 'L — Lambang & Imejan',
+                q: 'Apakah lambang yang sesuai untuk menggambarkan kesungguhan dan kejujuran?',
+                sub: 'Gunakan lambang afirmatif seperti titisan keringat jernih atau api semangat yang terkawal.',
+                t1: 'Fikirkan keringat yang mengalir bukan sebagai beban, tetapi sebagai permata pengorbanan.',
+                diksi: ['keringat jernih', 'api terkawal', 'panji', 'sayap', 'mutiara'],
+                contoh: 'keringat jernih mula membasahi dahi laksana mutiara usaha,',
+                ulasan: 'Lambang keringat jernih mewakili kejujuran dalam berjuang.'
+              },
+              {
+                jalin: 'L — Mengembangkan Lambang',
+                q: 'Bagaimanakah pertandingan dijalankan dengan adil dan saksama?',
+                sub: 'Gambarkan patuh kepada peraturan dan bunyi wisel yang dihormati.',
+                t1: 'Fikirkan bunyi wisel yang menjadi pengadil adil, disambut dengan permainan yang bersih.',
+                diksi: ['wisel adil', 'peraturan', 'bersih', 'neraca', 'permainan'],
+                contoh: 'mematuhi titah wisel yang mengalunkan keadilan neraca,',
+                ulasan: 'Menghubungkan lambang keadilan dengan disiplin pertandingan.'
+              },
+              {
+                jalin: 'I — Impak & Nilai',
+                q: 'Apakah sikap terpuji para peserta tatkala sedang bersaing sengit?',
+                sub: 'Tunjukkan bahawa mereka berlari laju tanpa menjatuhkan pihak lain.',
+                t1: 'Gambarkan pandangan yang tenang dan keengganan berbuat curang demi sebuah mata.',
+                diksi: ['berhemah', 'lurus', 'tenang', 'maruah', 'pandangan'],
+                contoh: 'tanpa dendam menjatuhkan langkah lawan di tikungan,',
+                ulasan: 'Menonjolkan nilai saingan sihat melalui penolakan helah kotor.'
+              },
+              {
+                jalin: 'I — Memperluas Pemikiran',
+                q: 'Apakah nilai luhur yang lebih penting daripada kemenangan semata-mata?',
+                sub: 'Ketinggian maruah diri dan kebersihan budi pekerti olahragawan.',
+                t1: 'Renungkan bahawa piala akan berhabuk, tetapi nama baik kekal disanjung.',
+                diksi: ['maruah', 'ketinggian budi', 'piala', 'kemilau', 'integriti'],
+                contoh: 'kerana kilau maruah jauh melangkaui sebuah trofi tembaga,',
+                ulasan: 'Membandingkan trofi dengan ketinggian nilai maruah yang kekal.'
+              },
+              {
+                jalin: 'N — Natijah',
+                q: 'Bagaimanakah anda menegaskan makna persaingan yang bermaruah di akhir rangkap?',
+                sub: 'Kunci rangkap dengan penegasan bahawa gelanggang ini mendidik jiwa menjadi ksatria.',
+                t1: 'Nyatakan bahawa di sini yang bertarung adalah jiwa yang budiman.',
+                diksi: ['ksatria', 'budiman', 'tegak', 'jiwa luhur', 'watan'],
+                contoh: 'di sini terdidik jiwa pendekar yang menjunjung kejujuran.',
+                ulasan: 'Menegaskan persoalan Rangkap 1 dengan penutup yang padat.'
+              }
+            ]
+          },
+          {
+            num: 2,
+            role: 'Memperluas Pemikiran',
+            issue: 'Sikap tolak ansur.',
+            bridgePrompt: 'Apabila para pemain saling memahami dan bertolak ansur, bagaimanakah mereka menunjukkan penghargaan terhadap kehebatan pihak lawan sesudah berjuang?',
+            lines: [
+              {
+                jalin: 'J — Judul Persoalan',
+                q: 'Gambarkan situasi di mana seorang pemain berhadapan dengan keadaan yang memerlukan pertimbangan.',
+                sub: 'Bukan sekadar mengejar bola, tetapi peka melihat rakan atau lawan yang terhimpit.',
+                t1: 'Bayangkan bola yang sedang melantun tetapi ada pemain yang terjatuh di atas rumput.',
+                diksi: ['terjatuh', 'lintasan', 'rentak', 'berhenti', 'pertimbangan'],
+                contoh: 'Tatkala seorang lawan rebah di tubir garisan larian,',
+                ulasan: 'Memulakan persoalan tolak ansur dengan insiden yang menguji hati.'
+              },
+              {
+                jalin: 'A — Arah Pemikiran',
+                q: 'Apakah tindakan spontan yang memperlihatkan kesediaannya memberi ruang?',
+                sub: 'Menahan rembatan atau memperlahankan larian demi keselamatan insan lain.',
+                t1: 'Gambarkan kaki yang membrek pantas dan bola yang disepak keluar gelanggang dengan sengaja.',
+                diksi: ['menahan hayunan', 'berhenti', 'memberi ruang', 'budi', 'menghulur'],
+                contoh: 'kaki menahan hayunan bola lalu memberi ruang seketika,',
+                ulasan: 'Tindakan fizikal yang membuktikan sifat tolak ansur tanpa ayat khutbah.'
+              },
+              {
+                jalin: 'L — Lambang & Imejan',
+                q: 'Bagaimanakah anda menggambarkan sikap berlapang dada tersebut melalui imejan alam?',
+                sub: 'Gunakan lambang seperti payung teduh, bayu petang, atau telapak tangan terbuka.',
+                t1: 'Fikirkan telapak tangan yang terbuka menyambut angin kedamaian.',
+                diksi: ['lapang dada', 'payung teduh', 'telapak terbuka', 'lembut bayu'],
+                contoh: 'seperti ranting rendang yang merelakan daunnya dipinjam bayu,',
+                ulasan: 'Metafora alam yang melukiskan kerelaan berkorban demi kebaikan bersama.'
+              },
+              {
+                jalin: 'L — Mengembangkan Lambang',
+                q: 'Apakah reaksi positif daripada pihak lawan atau penonton terhadap tindakan itu?',
+                sub: 'Pandangan penuh rasa terima kasih dan tepukan gemuruh yang menghargai budi.',
+                t1: 'Gambarkan anggukan kepala yang ikhlas dari seberang jaring.',
+                diksi: ['anggukan', 'tepukan mesra', 'tatapan jernih', 'terima kasih'],
+                contoh: 'disambut tatapan jernih yang memadamkan secebis curiga,',
+                ulasan: 'Kesan serta-merta daripada sikap tolak ansur.'
+              },
+              {
+                jalin: 'I — Impak & Nilai',
+                q: 'Bagaimanakah tindakan tolak ansur itu menyuburkan rasa persefahaman?',
+                sub: 'Ketegangan perlumbaan reda bertukar menjadi kehangatan persaudaraan.',
+                t1: 'Bayangkan habuk persaingan yang ditiup sejuk oleh hemah budi.',
+                diksi: ['reda', 'hangat', 'persefahaman', 'lebur', 'tenteram'],
+                contoh: 'meredakan deru sengit menjadi hening yang menyejukkan dada,',
+                ulasan: 'Impak psikologi tindakan toleransi kepada atmosfera perlawanan.'
+              },
+              {
+                jalin: 'I — Memperluas Pemikiran',
+                q: 'Apakah kesannya terhadap suasana keseluruhan pertandingan di padang?',
+                sub: 'Padang bukan medan sengketa, tetapi tempat memupuk kematangan peribadi.',
+                t1: 'Gambarkan penonton yang tersenyum melihat keindahan budi pekerti sukan.',
+                diksi: ['kematangan', 'padang damai', 'senyuman', 'maruah sukan'],
+                contoh: 'kerana memberi ruang bukan bererti menyerahkan kekalahan,',
+                ulasan: 'Falsafah mendalam: tolak ansur bukan tanda kelemahan.'
+              },
+              {
+                jalin: 'N — Natijah',
+                q: 'Akhiri rangkap dengan gambaran keharmonian yang terbina berkat toleransi.',
+                sub: 'Tegaskan bahawa kemenangan sejati bermula daripada hati yang lapang.',
+                t1: 'Simpulkan bahawa jiwa yang mengalah untuk kebaikan adalah juara sebenar.',
+                diksi: ['juara jiwa', 'keharmonian', 'lapang dada', 'bercahaya'],
+                contoh: 'melainkan memenangkan kemanusiaan di puncak pertimbangan.',
+                ulasan: 'Natijah kukuh yang melengkapkan Rangkap 2.'
+              }
+            ]
+          },
+          {
+            num: 3,
+            role: 'Memperdalam Pemikiran',
+            issue: 'Hormat-menghormati pihak lawan.',
+            bridgePrompt: 'Rasa hormat kepada lawan di luar gelanggang juga mengukuhkan ikatan rakan sepasukan. Bagaimanakah semangat kerjasama membawa atlet ke arah matlamat bersama?',
+            lines: [
+              {
+                jalin: 'J — Judul Persoalan',
+                q: 'Gambarkan saat pertandingan tamat dan wisel penamat berbunyi.',
+                sub: 'Detik pertarungan fizikal berhenti dan mata saling bertatapan.',
+                t1: 'Bayangkan nafas yang termengah-mengah dan wisel panjang ditiup pengadil.',
+                diksi: ['wisel penamat', 'tamat', 'nafas reda', 'langkah terhenti', 'senja'],
+                contoh: 'Usai sudah wisel panjang menghentikan rentak gelanggang,',
+                ulasan: 'Titik peralihan daripada pertarungan kepada persaudaraan.'
+              },
+              {
+                jalin: 'A — Arah Pemikiran',
+                q: 'Apakah tindakan segera pemain terhadap pihak lawan yang baru disaingi?',
+                sub: 'Melangkah menghampiri lawan tanpa sombong atau tanpa rasa dendam.',
+                t1: 'Gambarkan langkah yang mendekati garisan tengah untuk bersalaman.',
+                diksi: ['menghampiri', 'jabat erat', 'merapatkan diri', 'senyuman', 'tulus'],
+                contoh: 'dua seteru melangkah tenang merapatkan jarak sempadan,',
+                ulasan: 'Menghapuskan sempadan lawan melalui perlakuan mendekat.'
+              },
+              {
+                jalin: 'L — Lambang & Imejan',
+                q: 'Gunakan perlakuan gerak tangan atau senyuman sebagai lambang penghormatan.',
+                sub: 'Jabat tangan erat atau pelukan mesra yang menyatukan dua jersi berbeza warna.',
+                t1: 'Bayangkan dua warna jersi yang berpelukan mesra di bawah cahaya lampu.',
+                diksi: ['bertaut tangan', 'pelukan jersi', 'dakapan mesra', 'sentuhan ikhlas'],
+                contoh: 'tangan dihulur bertaut erat menyulam rasa penghargaan,',
+                ulasan: 'Lambang tautan tangan sebagai manifestasi penghormatan tulus.'
+              },
+              {
+                jalin: 'L — Mengembangkan Lambang',
+                q: 'Bagaimanakah reaksi pihak lawan menerima penghormatan tersebut?',
+                sub: 'Membalas dengan senyuman lapang dan ucapan tahniah yang ikhlas.',
+                t1: 'Gambarkan tepukan bahu dan anggukan mengiktiraf kehebatan masing-masing.',
+                diksi: ['tepuk bahu', 'membalas mesra', 'senyum lapang', 'mengiktiraf'],
+                contoh: 'mengiktiraf peluh dan kehebatan yang telah dicurahkan,',
+                ulasan: 'Hubungan timbal balik rasa hormat antara dua pihak.'
+              },
+              {
+                jalin: 'I — Impak & Nilai',
+                q: 'Apakah perasaan mulia yang terpancar daripada perlakuan saling menghormati ini?',
+                sub: 'Rasa damai di jiwa dan ketiadaan permusuhan selepas perlawanan.',
+                t1: 'Fikirkan rasa hormat yang menewaskan rasa ego peribadi.',
+                diksi: ['ego lebur', 'damai batin', 'keinsafan', 'jernih'],
+                contoh: 'lebur segala keangkuhan di bawah payung kesantunan budi,',
+                ulasan: 'Kesan moral: hormat memadamkan keegoan manusia.'
+              },
+              {
+                jalin: 'I — Memperluas Pemikiran',
+                q: 'Bagaimanakah penghormatan ini membuktikan sukan mengatasi perbezaan?',
+                sub: 'Di sebalik warna panji yang berlainan, mereka adalah saudara seinsan.',
+                t1: 'Gambarkan perbezaan warna bendera yang disatukan oleh rasa kagum.',
+                diksi: ['merentas warna', 'sempadan runtuh', 'saudara', 'sejiwa'],
+                contoh: 'bahawa di atas gelanggang ini tiada musuh yang kekal abadi,',
+                ulasan: 'Mematangkan pemikiran tentang erti sebenar persaingan.'
+              },
+              {
+                jalin: 'N — Natijah',
+                q: 'Tegaskan makna rasa hormat melalui ungkapan puitis penutup rangkap.',
+                sub: 'Tutup dengan penegasan bahawa lawan adalah guru yang mengajar erti kecekalan.',
+                t1: 'Nyatakan bahawa menghormati lawan adalah tanda ketinggian akhlak olahragawan.',
+                diksi: ['cermin kehebatan', 'guru cabaran', 'menjulang maruah', 'abadi'],
+                contoh: 'hanyalah rakan kembara yang menguji setinggi mana maruah dijulang.',
+                ulasan: 'Natijah bernas: lawan sebagai cermin keteguhan diri.'
+              }
+            ]
+          },
+          {
+            num: 4,
+            role: 'Mematangkan Pemikiran',
+            issue: 'Kerjasama dalam pasukan.',
+            bridgePrompt: 'Kerjasama membina hubungan yang erat dan kukuh. Apakah nilai persahabatan sejati yang tetap mekar selepas temasya sukan melabuhkan tirai?',
+            lines: [
+              {
+                jalin: 'J — Judul Persoalan',
+                q: 'Gambarkan satu detik permainan yang memerlukan gabungan kudrat beberapa pemain.',
+                sub: 'Serangan berpasukan, pertahanan yang seia sekata, atau larian bersambung.',
+                t1: 'Bayangkan baton yang bertukar tangan atau hantaran bola yang tepat ke kaki rakan.',
+                diksi: ['hantaran tepat', 'baton bersambut', 'kudrat sekata', 'jaringan', 'barisan'],
+                contoh: 'Bila jentera berpasukan mula menyusun barisan pertahanan,',
+                ulasan: 'Membuka tema kerjasama melalui aksi padu di medan.'
+              },
+              {
+                jalin: 'A — Arah Pemikiran',
+                q: 'Bagaimanakah seorang pemain berkorban atau membantu rakannya?',
+                sub: 'Menutup ruang kosong atau mengumpan bola tanpa mementingkan nama sendiri.',
+                t1: 'Gambarkan pemain yang meluncur menyelamatkan bola demi pasukannya.',
+                diksi: ['mengumpan', 'menutup jurang', 'rela berkorban', 'keringat bersama'],
+                contoh: 'tiada yang mendabik dada menuntut sanjungan nama,',
+                ulasan: 'Menolak sifat mementingkan diri dalam kerja sepasukan.'
+              },
+              {
+                jalin: 'L — Lambang & Imejan',
+                q: 'Gunakan lambang untuk menggambarkan kesepaduan tindakan bersama.',
+                sub: 'Laksana mata rantai besi, gerak pasang surut ombak, atau irama lagu seragam.',
+                t1: 'Fikirkan mata rantai yang kukuh mengikat perahu ke tiang dermaga.',
+                diksi: ['mata rantai', 'jalinan benang', 'irama seragam', 'dinding pasak'],
+                contoh: 'mereka bersatu laksana untaian mata rantai waja,',
+                ulasan: 'Lambang mata rantai waja menggambarkan kekuatan persefahaman.'
+              },
+              {
+                jalin: 'L — Mengembangkan Lambang',
+                q: 'Apakah tindakan rakan sepasukan yang menyambut usaha tersebut?',
+                sub: 'Menerima hantaran dengan kemas dan menyempurnakan strategi bersama.',
+                t1: 'Gambarkan sorakan semangat yang saling mengangkat moral pemain lain.',
+                diksi: ['menyambut kemas', 'sahutan padu', 'sorak semangat', 'seia sekata'],
+                contoh: 'setiap langkah disambut padu oleh degup yang sepakat,',
+                ulasan: 'Mengembangkan kesinambungan tindakan rakan sepasukan.'
+              },
+              {
+                jalin: 'I — Impak & Nilai',
+                q: 'Bagaimanakah kerjasama memudahkan pencapaian matlamat pasukan?',
+                sub: 'Beban yang berat menjadi ringan tatkala dipikul bersama-sama.',
+                t1: 'Fikirkan gunung cabaran yang runtuh apabila semua tenaga disatukan.',
+                diksi: ['beban ringan', 'matlamat tercapai', 'padu tenaga', 'benteng kebal'],
+                contoh: 'meringankan beban curam yang terpacak di hadapan mata,',
+                ulasan: 'Kesan amalan muafakat: cabaran sukar menjadi mudah.'
+              },
+              {
+                jalin: 'I — Memperluas Pemikiran',
+                q: 'Apakah kesannya terhadap rasa saling mempercayai dalam pasukan?',
+                sub: 'Keyakinan diri bercambah dan lahir ikatan jiwa yang tidak mudah goyah.',
+                t1: 'Bayangkan keyakinan bahawa rakan di belakang sentiasa menjaga keselamatan.',
+                diksi: ['percaya teguh', 'keyakinan', 'benteng hati', 'padu'],
+                contoh: 'menyemai kepercayaan utuh bahawa tiada insan yang bersendirian,',
+                ulasan: 'Memperluas dimensi kerjasama kepada keyakinan sosial.'
+              },
+              {
+                jalin: 'N — Natijah',
+                q: 'Tegaskan kekuatan usaha bersama melalui penutup rangkap yang puitis.',
+                sub: 'Nyatakan bahawa satu tangan lemah, tetapi genggaman bersama mampu menggoncang dunia.',
+                t1: 'Kunci dengan peribahasa tersirat seperti bukit yang sama didaki.',
+                diksi: ['seikat laksana lidi', 'padu kekuatan', 'watan perkasa', 'gemilang'],
+                contoh: 'kerana sebuah kemenangan adalah mahkota milik bersama.',
+                ulasan: 'Natijah afirmatif: kejayaan adalah hasil keringat kolektif.'
+              }
+            ]
+          },
+          {
+            num: 5,
+            role: 'Menyempurnakan Pemikiran',
+            issue: 'Semangat setiakawan berkekalan.',
+            bridgePrompt: 'Sajak anda telah lengkap dari persaingan hingga persaudaraan abadi! Mari semak keseluruhan 35 baris mengikut skema STPM.',
+            lines: [
+              {
+                jalin: 'J — Judul Persoalan',
+                q: 'Gambarkan suasana damai selepas pertandingan melabuhkan tirai sepenuhnya.',
+                sub: 'Padang mulai lengang, mentari senja melabuhkan tirai, namun persahabatan tetap hangat.',
+                t1: 'Bayangkan lampu stadium yang dipadamkan satu persatu sementara atlet berbual mesra.',
+                diksi: ['senja berlabuh', 'gelanggang hening', 'lampu terpadam', 'tamat temasya'],
+                contoh: 'Kini gelanggang kembali hening diselimuti senja damai,',
+                ulasan: 'Menghubungkan semula suasana gelanggang pembuka di Rangkap 1.'
+              },
+              {
+                jalin: 'A — Arah Pemikiran',
+                q: 'Apakah tindakan para atlet yang membuktikan hubungan persahabatan mereka berkekalan?',
+                sub: 'Berjalan seiringan keluar pintu stadium sambil berkongsi tawa dan kenangan.',
+                t1: 'Gambarkan tangan di bahu rakan dan pertukaran jersi sebagai kenang-kenangan.',
+                diksi: ['beriringan', 'kongsi tawa', 'jersi bertukar', 'langkah damai'],
+                contoh: 'mereka melangkah seiringan meninggalkan debu pertarungan,',
+                ulasan: 'Perlakuan fizikal berjalan seiringan melambangkan kesatuan.'
+              },
+              {
+                jalin: 'L — Lambang & Imejan',
+                q: 'Pilih satu imejan yang melambangkan keabadian persahabatan sejati.',
+                sub: 'Laksana pohon rendang yang kekal tegak berbuah manis, atau pelangi selepas ribut.',
+                t1: 'Fikirkan benih persaudaraan yang ditanam di atas tanah padang tadi.',
+                diksi: ['pohon persaudaraan', 'pelangi perpaduan', 'benih mekar', 'akar mesra'],
+                contoh: 'meninggalkan benih kasih yang mula mengakar di lubuk jiwa,',
+                ulasan: 'Lambang benih mengakar mewakili persaudaraan yang tidak putus.'
+              },
+              {
+                jalin: 'L — Mengembangkan Lambang',
+                q: 'Bagaimanakah persahabatan ini mengatasi sebarang keputusan menang atau kalah?',
+                sub: 'Angka di papan skor hilang dari ingatan, tetapi nama sahabat terpahat selamanya.',
+                t1: 'Bandingkan mata angka yang fana dengan persahabatan yang abadi.',
+                diksi: ['papan skor fana', 'angka lenyap', 'terpahat kukuh', 'sahabat'],
+                contoh: 'tatkala angka di papan skor perlahan-lahan dipadam waktu,',
+                ulasan: 'Menunjukkan bahawa keputusan perlawanan hanyalah sementara.'
+              },
+              {
+                jalin: 'I — Impak & Nilai',
+                q: 'Apakah nilai murni yang dibawa pulang oleh para peserta ke dalam masyarakat?',
+                sub: 'Menjadi insan yang berjiwa besar, beradab, dan mencintai perpaduan watan.',
+                t1: 'Fikirkan bagaimana semangat sukan ini dipraktikkan dalam kehidupan berbilang kaum.',
+                diksi: ['jiwa besar', 'bekal perpaduan', 'watan aman', 'budi luhur'],
+                contoh: 'mereka membawa pulang bekal jiwa yang kian matang dan bercahaya,',
+                ulasan: 'Impak sukan terhadap pembentukan watak insan di luar gelanggang.'
+              },
+              {
+                jalin: 'I — Memperluas Pemikiran',
+                q: 'Bagaimanakah anda mengaitkan semula lambang keringat atau gelanggang dari Rangkap 1?',
+                sub: 'Keringat yang dulu membasahi dahi kini telah membuahkan taman keharmonian bangsa.',
+                t1: 'Gunakan kata "keringat" atau "padang" untuk mengikat kesatuan struktur sajak.',
+                diksi: ['taman perpaduan', 'keringat membuah', 'gelanggang nusa', 'saujana'],
+                contoh: 'bahawa setiap titis keringat di gelanggang semalam,',
+                ulasan: 'Mengulang imejan keringat Rangkap 1 dengan makna falsafah baharu.'
+              },
+              {
+                jalin: 'N — Natijah',
+                q: 'Akhiri seluruh sajak dengan renungan puitis yang menyempurnakan semangat kesukanan.',
+                sub: 'Satu baris agung yang menegaskan sukan ialah tali pengikat cinta dan keamanan watan.',
+                t1: 'Kunci sajak dengan kesimpulan bahawa piala terhebat adalah perpaduan bangsa.',
+                diksi: ['piala perpaduan', 'panji watan', 'abadi', 'seikat sejiwa'],
+                contoh: 'telah membina sebuah jambatan persaudaraan yang takkan goyah.',
+                ulasan: 'Natijah kemuncak yang menyempurnakan sajak 35 baris dengan wibawa.'
+              }
+            ]
+          }
+        ]
+      },
+      'perpaduan': {
+        id: 'perpaduan',
+        title: 'Perpaduan Masyarakat Majmuk',
+        desc: 'Menghayati amalan hidup berjiran, sikap toleransi, saling menghormati budaya, bekerjasama dalam komuniti, dan muafakat memakmurkan tanah air.',
+        stanzas: [
+          {
+            num: 1,
+            role: 'Membuka Pemikiran',
+            issue: 'Hidup berjiran secara harmoni.',
+            bridgePrompt: 'Keharmonian kejiranan memerlukan sikap saling bertolak ansur dalam urusan harian. Bagaimanakah sikap tolak ansur merapatkan jurang perbezaan di Rangkap 2?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Apakah gambaran suasana kejiranan pada waktu pagi yang damai?', sub: 'Pintu rumah terbuka, aroma masakan berbaur, atau sapaan mesra di permatang lorong.', t1: 'Bayangkan lorong perumahan di mana pagar rumah tidak mengunci senyuman tetangga.', diksi: ['lorong damai', 'pintu terbuka', 'fajar', 'sapaan', 'aroma'], contoh: 'Di lorong kecil yang disinari mentari pagi,', ulasan: 'Membuka sajak dengan suasana kejiranan yang tenang.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah jiran pelbagai latar saling menegur sapa?', sub: 'Gambarkan senyuman yang terbit atau lambaian tangan merentas pagar.', t1: 'Fikirkan lambaian tangan mesra sebelum masing-masing berangkat mencari rezeki.', diksi: ['lambaian mesra', 'pagar rendah', 'senyuman', 'tatapan jernih'], contoh: 'lambaian mesra melintasi pagar yang sengaja dibina rendah,', ulasan: 'Pagar rendah melambangkan ketiadaan tembok pemisah antara jiran.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Apakah lambang yang sesuai untuk menggambarkan perkongsian rezeki kejiranan?', sub: 'Sepiring kuih, aroma rempah, atau secawan teh yang dihulur mesra.', t1: 'Bayangkan piring kuih bertukar tangan di waktu petang.', diksi: ['sepiring juadah', 'teh suam', 'aroma rempah', 'tangan terbuka'], contoh: 'sepiring juadah bertukar tangan merapatkan dua pintu,', ulasan: 'Perkongsian makanan menjadi simbol tradisi hidup berjiran.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah juadah itu menghangatkan hubungan antara mereka?', sub: 'Menghapuskan rasa kekok dan menumbuhkan rasa persaudaraan tulus.', t1: 'Gambarkan perbualan santai tentang khabar keluarga dan anak-anak.', diksi: ['hangat bicara', 'tunas mesra', 'tawa kecil', 'santun'], contoh: 'menyulam bicara santun tentang anak-anak yang membesar,', ulasan: 'Mengembangkan makna perkongsian juadah kepada keakraban keluarga.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah kesan positif apabila hidup berjiran dipenuhi kemesraan?', sub: 'Rasa selamat, aman di rumah sendiri, dan tiada curiga menatap tetangga.', t1: 'Fikirkan rasa terlindung tatkala jiran saling menjaga keselamatan rumah.', diksi: ['teduh', 'aman', 'tiada curiga', 'selamat', 'sentosa'], contoh: 'menghadirkan rasa selamat di bawah naungan bumbung desa,', ulasan: 'Kesan psikologi: ketenangan jiwa bermula dari jiran yang baik.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah amalan ini menjadi asas kepada keamanan kampung atau bandar?', sub: 'Menunjukkan bahawa keamanan negara terbina daripada pagar-pagar rumah yang harmoni.', t1: 'Renungkan bahawa desa yang damai adalah tiang kepada negeri yang makmur.', diksi: ['tiang negeri', 'akar damai', 'watan', 'asas kukuh'], contoh: 'kerana keamanan nusa bermula dari tawa di beranda tetangga,', ulasan: 'Memperluas skop dari lorong rumah kepada keselamatan seluruh negara.' },
+              { jalin: 'N — Natijah', q: 'Tegaskan keindahan hidup berjiran sebagai penutup rangkap pertama.', sub: 'Kunci dengan penegasan bahawa jiran adalah keluarga terdekat dalam kehidupan.', t1: 'Simpulkan bahawa darah mungkin berbeza, tetapi hati bertaut laksana saudara.', diksi: ['keluarga teduh', 'bertaut hati', 'saujana kasih'], contoh: 'menjadikan segenap lorong sebuah taman yang sentiasa berbunga.', ulasan: 'Natijah puitis yang menggambarkan kejiranan bagai taman bunga mekar.' }
+            ]
+          },
+          {
+            num: 2,
+            role: 'Memperluas Pemikiran',
+            issue: 'Toleransi dan tolak ansur.',
+            bridgePrompt: 'Di sebalik tolak ansur, bagaimanakah rasa hormat terhadap perbezaan perayaan dan adat resam diperdalam di Rangkap 3?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan situasi kepelbagaian rentak atau suara yang memerlukan toleransi.', sub: 'Bunyi gendang, loceng, atau laungan doa yang saling bersahutan tanpa prasangka.', t1: 'Bayangkan fajar di mana pelbagai bunyi amalan agama disambut dengan rasa hormat.', diksi: ['gema doa', 'rentak berbeza', 'fajar damai', 'gamelan', 'loceng'], contoh: 'Bila irama doa dan gema loceng saling menyapa di udara,', ulasan: 'Memperkenalkan kepelbagaian bunyi ibadat dengan harmoni.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah masyarakat bertindak dengan berlapang dada mendengarnya?', sub: 'Membuka jendela hati, tersenyum, dan memberi laluan dengan penuh adab.', t1: 'Gambarkan sikap tenang penduduk yang tidak menganggap perbezaan sebagai gangguan.', diksi: ['jendela hati', 'berlapang dada', 'laluan santun', 'tenang'], contoh: 'tiada telinga yang menutup jendela daripada memahami makna,', ulasan: 'Sikap terbuka dan matang mendengar perbezaan amalan.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Pilih satu lambang untuk menggambarkan tolak ansur yang indah.', sub: 'Laksana helai benang warna-warni yang ditenun menjadi sehelai kain songket.', t1: 'Fikirkan kain songket yang memerlukan benang emas, merah, dan biru untuk menjadi indah.', diksi: ['tenunan songket', 'pelbagai rona', 'pelangi saujana', 'jalinan'], contoh: 'laksana helaian benang berlainan warna pada tenunan songket,', ulasan: 'Imejan songket melambangkan kepelbagaian warna yang mencipta keindahan.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah jalinan benang itu menguatkan struktur kain tersebut?', sub: 'Saling menyokong dan merapatkan rongga tanpa merosakkan helai yang lain.', t1: 'Tunjukkan bahawa jika satu helai benang tercabut, kain tidak lagi sempurna.', diksi: ['merapat rongga', 'menyokong teguh', 'kain sempurna', 'utuh'], contoh: 'saling mengikat kemas membentuk corak yang tiada tandingannya,', ulasan: 'Kekuatan tenunan mewakili kekuatan toleransi masyarakat majmuk.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah kesan tolak ansur terhadap persefahaman antara kaum?', sub: 'Menghapuskan dinding prasangka dan membina jambatan rasa percaya.', t1: 'Bayangkan sungai keruh yang menjadi jernih apabila tiada sampah fitnah dilemparkan.', diksi: ['jernih', 'runtuh dinding', 'percaya', 'damai'], contoh: 'meruntuhkan dinding prasangka yang pernah membelenggu zaman,', ulasan: 'Kesan positif toleransi: melenyapkan salah faham lampau.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah tolak ansur menjadi benteng daripada anasir perpecahan?', sub: 'Masyarakat yang bertolak ansur tidak mudah dihasut oleh kata-kata kebencian.', t1: 'Gambarkan benteng karang yang teguh menepis hempasan ombak fitnah.', diksi: ['benteng karang', 'tepis hasutan', 'kebal', 'matang berfikir'], contoh: 'kerana jiwa yang lapang takkan mudah digoncang bisikan fitnah,', ulasan: 'Memperdalam toleransi sebagai daya tahan mental bangsa.' },
+              { jalin: 'N — Natijah', q: 'Tegaskan bahawa tolak ansur adalah kebijaksanaan luhur bangsa.', sub: 'Kunci rangkap dengan kesedaran bahawa perbezaan itu rahmat yang menyuburkan perpaduan.', t1: 'Simpulkan bahawa di bawah langit ini, setiap warna menyumbang kepada cahaya.', diksi: ['rahmat warna', 'kuntum muafakat', 'watan bersatu'], contoh: 'melainkan merayakan perbezaan sebagai anugerah terindah pertiwi.', ulasan: 'Natijah padat yang menegaskan toleransi sebagai anugerah watan.' }
+            ]
+          },
+          {
+            num: 3,
+            role: 'Memperdalam Pemikiran',
+            issue: 'Saling menghormati warisan dan pegangan.',
+            bridgePrompt: 'Selepas menghormati adat di Rangkap 3, apakah tindakan gotong-royong dan kerjasama yang menyatukan tenaga mereka di Rangkap 4?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan perayaan warisan budaya yang diraikan bersama-sama.', sub: 'Pintu gerbang yang dihiasi tanglung, pelita panjut, atau kolam yang indah.', t1: 'Bayangkan malam perayaan di mana jiran tetangga saling berkunjung mengenakan pakaian tradisional.', diksi: ['tanglung merah', 'pelita panjut', 'busana warisan', 'senyuman perayaan'], contoh: 'Bila tanglung merah bergantungan di sisi pelita panjut,', ulasan: 'Imejan visual perayaan majmuk yang wujud serentak.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah generasi kini melangkah menghormati rumah ibadat dan adat pusaka?', sub: 'Menundukkan kepala tanda hormat dan melangkah dengan penuh kesantunan.', t1: 'Gambarkan langkah tertib tetangga yang berkunjung dengan adab ketimuran.', diksi: ['langkah tertib', 'santun menziarah', 'tunduk hormat', 'adab timur'], contoh: 'kaki melangkah dengan adab menziarahi laman sahabat,', ulasan: 'Perlakuan menziarah dengan santun mencerminkan nilai hormat.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Apakah lambang yang sesuai untuk memaparkan rasa saling menghargai asal usul?', sub: 'Laksana jambatan batu yang merentasi dua tebing sungai yang luas.', t1: 'Fikirkan jambatan kukuh yang membolehkan insan berulang-alik dengan selamat.', diksi: ['jambatan batu', 'dua tebing', 'sungai jernih', 'pasak karang'], contoh: 'menjadi jambatan kukuh yang merentasi jurang kelainan,', ulasan: 'Lambang jambatan batu menggambarkan hubungan yang tidak mudah goyah.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah jambatan itu membolehkan nilai budaya saling diperkaya?', sub: 'Generasi muda belajar mengenal erti tarian, bahasa, dan nilai murni kaum lain.', t1: 'Gambarkan anak-anak yang belajar menyebut perkataan bahasa ibunda rakan mereka.', diksi: ['mengenal erti', 'bicara ramah', 'kaya budaya', 'ilmu pusaka'], contoh: 'di mana anak-anak belajar mengeja erti pusaka sesama insan,', ulasan: 'Mengembangkan makna jambatan kepada pendidikan rentas budaya.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah rasa kagum dan syukur yang terbit tatkala menghormati warisan itu?', sub: 'Rasa bangga menjadi anak Malaysia yang mewarisi tamadun berwarna-warni.', t1: 'Fikirkan rasa lapang dada melihat kemakmuran tanpa perlu menindas sesiapa.', diksi: ['bangga nusa', 'kagum', 'syukur terbit', 'warna tamadun'], contoh: 'berputiklah rasa kagum pada luhurnya tamadun yang berkongsi tanah,', ulasan: 'Kesan rasa hormat: melahirkan kebanggaan patriotik yang tulen.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah amalan menghormati ini memelihara warisan daripada terhakis?', sub: 'Warisan bangsa tidak pupus kerana semua kaum saling menjaga dan menghargai.', t1: 'Gambarkan akar budaya yang kekal mencengkam kukuh di bumi bertuah.', diksi: ['akar budaya', 'cengkam kukuh', 'lestari', 'warisan terpelihara'], contoh: 'agar akar pusaka tidak rapuh dipukul arus kemodenan yang deras,', ulasan: 'Memperluas pemikiran: saling menghormati memelihara khazanah bangsa.' },
+              { jalin: 'N — Natijah', q: 'Kunci rangkap ketiga dengan penegasan tentang ketinggian nilai hormat.', sub: 'Tegaskan bahawa bangsa yang bertamadun adalah bangsa yang memuliakan perbezaan.', t1: 'Simpulkan bahawa penghormatan melahirkan maruah nusa yang gemilang.', diksi: ['maruah watan', 'adab bertakhta', 'mulia'], contoh: 'kerana kemuliaan manusia terletak pada sejauh mana ia menghormati sesama.', ulasan: 'Natijah berfalsafah tinggi yang menyempurnakan Rangkap 3.' }
+            ]
+          },
+          {
+            num: 4,
+            role: 'Mematangkan Pemikiran',
+            issue: 'Semangat bekerjasama dan tolong-menolong.',
+            bridgePrompt: 'Keringat kerjasama di Rangkap 4 kini menyatukan azam mereka. Bagaimanakah amalan bermuafakat membuahkan kemakmuran watan di Rangkap 5?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan situasi gotong-royong membersihkan kawasan atau membina jambatan kampung.', sub: 'Kudrat tua dan muda turun ke parit, menyapu laman, atau mendirikan khemah.', t1: 'Bayangkan bunyi cangkul, gelak tawa, dan keringat yang mengalir bersama di hari minggu.', diksi: ['cangkul berpadu', 'khemah muafakat', 'gotong-royong', 'kudrat bersama'], contoh: 'Bila cangkul dan penyapu dipegang oleh pelbagai jemari,', ulasan: 'Membuka tema kerjasama dengan alat kerja fizikal yang menyatukan rakyat.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah orang ramai saling membantu tanpa mengira pangkat atau kaum?', sub: 'Yang berat sama dipikul, yang ringan sama dijinjing dengan hati yang gembira.', t1: 'Gambarkan seorang pemuda memegang tangga sementara jiran tua mengecat dinding.', diksi: ['sama memikul', 'bantu-membantu', 'tangga disokong', 'hati ikhlas'], contoh: 'tiada yang berpeluk tubuh tatkala parit tersumbat memerlukan kudrat,', ulasan: 'Tindakan proaktif turun padang membantu komuniti.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Gunakan lambang untuk menggambarkan perpaduan tenaga kerja.', sub: 'Laksana semut yang beriringan memunggah rezeki atau lebah yang membina sarang madu.', t1: 'Fikirkan sarang lebah yang manis hasilnya kerana dibina bersama.', diksi: ['barisan semut', 'sarang madu', 'jalinan akar', 'benteng batu'], contoh: 'mereka berarak laksana barisan semut yang menyusun sarang muhibah,', ulasan: 'Perlambangan semut mewakili ketekunan kerjasama yang jitu.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Apakah hasil manis daripada tenaga yang disatukan itu?', sub: 'Parit mengalir jernih, balai raya berdiri megah, dan laman desa menjadi bersih.', t1: 'Tunjukkan perubahan kawasan sekitar yang menjadi indah dan selesa.', diksi: ['sungai jernih', 'balai megah', 'laman bersih', 'selesa'], contoh: 'membersihkan setiap kekotoran hingga terpancar jernih wajah kampung,', ulasan: 'Mengaitkan usaha bersama dengan hasil fizikal yang membahagiakan.' },
+              { jalin: 'I — Impak & Nilai', q: 'Bagaimanakah kerja bersama ini meringankan beban kesusahan?', sub: 'Kerja berhari-hari selesai dalam beberapa jam kerana dipikul ramai.', t1: 'Bayangkan senyuman kepuasan tatkala menikmati hidangan air sirap sejuk bersama.', diksi: ['beban ringan', 'sirap sejuk', 'puas', 'tawa bersama'], contoh: 'keringat yang menitis terubat oleh tegukan air yang dikongsi bersama,', ulasan: 'Kesan emosi: kepuasan berkongsi kepenatan dan kelegaan.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah semangat ini menjadi teladan kepada generasi anak-anak?', sub: 'Kanak-kanak melihat ibu bapa mereka saling berpimpin tangan dan menirunya.', t1: 'Fikirkan mata anak kecil yang memerhati teladan baik orang dewasa.', diksi: ['teladan anak', 'benih budi', 'warisan amalan', 'dipahat'], contoh: 'menjadi cermin budi buat anak-anak yang memandang dengan takjub,', ulasan: 'Memperluas nilai: kerjasama sebagai pendidikan praktikal generasi masa depan.' },
+              { jalin: 'N — Natijah', q: 'Tegaskan bahawa kerjasama adalah kunci benteng perpaduan yang sebenar.', sub: 'Tutup rangkap dengan ikrar bahawa berat sama dipikul menjadi kekuatan bangsa.', t1: 'Simpulkan bahawa tiada beban yang tidak dapat diangkat jika rakyat sehati sejiwa.', diksi: ['kekuatan bangsa', 'sehati sejiwa', 'padu tenaga'], contoh: 'kerana beban seberat gunung pun runtuh bila didaki seiringan.', ulasan: 'Natijah kukuh berasaskan falsafah peribahasa Melayu yang diperbaharui.' }
+            ]
+          },
+          {
+            num: 5,
+            role: 'Menyempurnakan Pemikiran',
+            issue: 'Permuafakatan memakmurkan watan.',
+            bridgePrompt: 'Sajak anda tentang perpaduan telah sempurna dari lorong kejiranan hingga ke puncak kemakmuran watan! Mari semak rubrik STPM 25 markah.',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan sebuah tanah air yang makmur dan aman di bawah naungan perpaduan.', sub: 'Bangunan pencakar langit berdiri megah di samping perkampungan yang damai.', t1: 'Bayangkan langit biru nusa yang menaungi rakyat berbilang bangsa dengan sejahtera.', diksi: ['langit watan', 'tanah bertuah', 'pencakar langit', 'desa sentosa'], contoh: 'Kini di bawah langit bertuah yang merestui damai nusa,', ulasan: 'Membuka rangkap penutup dengan visi makro kemakmuran negara.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah rakyat berdiri teguh memelihara ikrar kemerdekaan dan muafakat?', sub: 'Tangan di dada mengalunkan lagu kebangsaan dengan rasa bangga sejati.', t1: 'Gambarkan pandangan yang menghadap bendera berkibar megah di angkasa.', diksi: ['ikrar setia', 'jalur gemilang', 'tangan di dada', 'alun suara'], contoh: 'berdiri segenap warga melafazkan ikrar yang takkan goyah,', ulasan: 'Tindakan melafazkan ikrar setia melambangkan perpaduan mutlak.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Pilih lambang pohon beringin atau payung pertiwi yang memayungi semua.', sub: 'Laksana pohon rendang tempat burung-burung beraneka warna bersarang aman.', t1: 'Fikirkan pohon besar yang akarnya mencengkam bumi, cabangnya memayungi segala makhluk.', diksi: ['pohon beringin', 'payung pertiwi', 'teduhan aman', 'dahan kukuh'], contoh: 'pertiwi ini sebuah pohon beringin yang merendangkan teduhan adil,', ulasan: 'Lambang pohon beringin mewakili negara yang adil memayungi semua kaum.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah dahan dan akar pohon itu saling mengukuhkan tanah watan?', sub: 'Menahan hakisan ribut globalisasi dan membolehkan buah kemakmuran dinikmati bersama.', t1: 'Tunjukkan bahawa kemakmuran ekonomi dikongsi secara adil oleh segenap warga.', diksi: ['tahan ribut', 'buah kemakmuran', 'nikmat adil', 'pucuk hijau'], contoh: 'cabangnya menepis badai, buahnya menjadi rezeki sekelian anak bangsa,', ulasan: 'Kesan pohon pertiwi: kestabilan politik dan kemakmuran ekonomi rakyat.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah perasaan syukur dan tekad yang dibawa ke masa hadapan?', sub: 'Keazaman mewariskan negara yang bersatu padu kepada generasi anak cucu.', t1: 'Fikirkan harapan seorang datuk melihat cucunya hidup tanpa rasa takut.', diksi: ['warisan suci', 'tanpa gentar', 'anak cucu', 'harapan mekar'], contoh: 'membawa pulang tekad murni untuk mewariskan bumi yang tenang ini,', ulasan: 'Tanggungjawab generasi kini kepada generasi hari esok.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah anda mengaitkan semula imejan lorong atau pintu terbuka di Rangkap 1?', sub: 'Menunjukkan bahawa keamanan besar ini bermula dari pintu rumah yang terbuka di awal sajak.', t1: 'Gunakan frasa "pintu" atau "senyuman lorong" untuk mengunci keutuhan struktur sajak.', diksi: ['pintu terbuka', 'senyuman lorong', 'akar pertama', 'jalinan'], contoh: 'bahawa perpaduan agung ini bermula dari pintu jiran yang terbuka mesra,', ulasan: 'Teknik kesinambungan puitis: menghubungkan penamat dengan pembuka sajak.' },
+              { jalin: 'N — Natijah', q: 'Akhiri sajak dengan satu penegasan agung tentang muafakat sebagai nadi watan.', sub: 'Baris penutup yang memukau: muafakat membawa berkat abadi di bumi merdeka.', t1: 'Kunci dengan penegasan falsafah kemerdekaan yang tidak dapat digugat.', diksi: ['muafakat berkat', 'abadi', 'pertiwi berdaulat', 'seikat selamanya'], contoh: 'disimpul rapi oleh kasih sayang yang mengalir abadi di nadi Malaysia.', ulasan: 'Natijah kemuncak yang megah dan mengikat 35 baris dengan sempurna.' }
+            ]
+          }
+        ]
+      },
+      'jati-diri': {
+        id: 'jati-diri',
+        title: 'Jati Diri Generasi Muda',
+        desc: 'Membina kesedaran menghargai warisan asal usul, memartabatkan bahasa ibunda, berpegang teguh pada budi pekerti, kental berprinsip, dan berwibawa memimpin masa depan.',
+        stanzas: [
+          {
+            num: 1,
+            role: 'Membuka Pemikiran',
+            issue: 'Mengenali asal usul dan warisan bangsa.',
+            bridgePrompt: 'Kecintaan kepada warisan di Rangkap 1 memerlukan wahana penyampai iaitu bahasa ibunda. Bagaimanakah peranan bahasa dipaparkan di Rangkap 2?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Apakah gambaran seorang anak muda yang sedang merenung warisan moyangnya?', sub: 'Menatap rumah pusaka, ukiran kayu lama, atau lembaran sejarah di waktu hening.', t1: 'Bayangkan anak muda berdiri di anjung rumah tradisional menatap tiang seri berukir.', diksi: ['anjung pusaka', 'tiang seri', 'ukiran kayu', 'fajar sejarah'], contoh: 'Di anjung rumah pusaka yang masih memelihara hening fajar,', ulasan: 'Membuka sajak dengan imejan warisan fizikal rumah tradisional.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah jari jemarinya menyentuh tinggalan sejarah tersebut?', sub: 'Menyusuri alur ukiran dengan rasa takjub dan hormat akan kebijaksanaan silam.', t1: 'Gambarkan sentuhan tangan pada kayu lama yang menceritakan jerih perih leluhur.', diksi: ['jemari menyusur', 'alur ukiran', 'takjub', 'jerih leluhur'], contoh: 'jemari menyusuri alur ukiran yang dipahat oleh keringat moyang,', ulasan: 'Perlakuan fizikal menyentuh ukiran melambangkan penghayatan sejarah.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Apakah lambang yang sesuai untuk menggambarkan akar asal usul?', sub: 'Laksana akar tunjang yang menghunjam jauh ke dasar tanah bertuah.', t1: 'Fikirkan akar pokok tua yang tidak pernah goyah walaupun ditiup taufan.', diksi: ['akar tunjang', 'dasar bumi', 'pohon rendang', 'tanah bertuah'], contoh: 'laksana akar tunjang yang mencengkam setia ke rahim pertiwi,', ulasan: 'Lambang akar tunjang mewakili keteguhan pegangan kepada asal usul.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah akar itu memberi kekuatan kepada dahan dan pucuk muda?', sub: 'Menyalurkan zat keberanian dan maruah agar pucuk muda tidak rebah dipukul angin.', t1: 'Tunjukkan hubungan antara akar di dalam tanah dengan daun hijau di pucuk pohon.', diksi: ['zat maruah', 'pucuk muda', 'tegak berdiri', 'menepis ribut'], contoh: 'menyalurkan zat keberanian ke setiap urat ranting yang kian membesar,', ulasan: 'Mengaitkan lambang akar dengan pembentukan peribadi generasi muda.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah kesedaran yang timbul di dalam dada anak muda itu?', sub: 'Menyedari bahawa dirinya bukan debu yang hanyut tanpa nama atau identiti.', t1: 'Bayangkan rasa bangga mengetahui susur galur bangsanya yang beradab tinggi.', diksi: ['bukan debu hanyut', 'maruah bangsa', 'identiti utuh', 'sedar diri'], contoh: 'menyedarkan diri bahawa langkah ini berpijak pada bumi yang berdaulat,', ulasan: 'Kesan batin: kesedaran identiti dan maruah diri sebagai anak watan.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah ingatan pada warisan melindungi mereka daripada kealpaan dunia moden?', sub: 'Tidak mudah silau oleh gemerlap kemajuan yang meminggirkan nilai tradisi.', t1: 'Renungkan bahawa kemodenan tanpa jati diri laksana layang-layang putus tali.', diksi: ['silau kota', 'arus moden', 'pedoman tradisi', 'benteng'], contoh: 'agar mata tidak silau oleh fatamorgana kemajuan yang mencabut akar,', ulasan: 'Memperluas pemikiran: warisan sebagai pedoman menepis keterlanjuran moden.' },
+              { jalin: 'N — Natijah', q: 'Tegaskan ikrar anak muda untuk mempertahankan warisan bangsanya.', sub: 'Kunci rangkap dengan janji bahawa pusaka ini akan dijulang selagi bernafas.', t1: 'Simpulkan bahawa selagi darah mengalir, nama bangsa akan dipertahankan.', diksi: ['ikrar pusaka', 'dijulang tinggi', 'maruah nusa'], contoh: 'kerana pohon yang melupakan tanahnya takkan mampu menahan taufan.', ulasan: 'Natijah berfalsafah: peringatan tuntas tentang bahaya melupakan akar.' }
+            ]
+          },
+          {
+            num: 2,
+            role: 'Memperluas Pemikiran',
+            issue: 'Memartabatkan bahasa ibunda.',
+            bridgePrompt: 'Selepas memartabatkan bahasa di Rangkap 2, bagaimanakah nilai budi pekerti dan kesantunan timur menghiasi tingkah laku di Rangkap 3?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan kemerduan tutur kata dalam bahasa ibunda yang dialunkan.', sub: 'Bicara yang santun, pantun yang bersahaja, atau lembaran sastera yang dibaca.', t1: 'Bayangkan lidah yang fasih melafazkan kata-kata indah dengan sebutan yang sempurna.', diksi: ['alunan bicara', 'pantun santun', 'lidah fasih', 'aksara indah'], contoh: 'Bila lidah mengalunkan bait aksara bahasa bonda,', ulasan: 'Membuka persoalan bahasa melalui keindahan bunyi aksara ibunda.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah bahasa itu digunakan untuk menyatakan kebenaran dan ilmu?', sub: 'Bukan sekadar hiasan kata, tetapi wadah pemikiran kritis dan ilmu sains.', t1: 'Gambarkan dewan kuliah atau perbahasan yang bergema dengan hujah bernas dalam bahasa Melayu.', diksi: ['wadah ilmu', 'hujah bernas', 'kebenaran', 'ketinggian akal'], contoh: 'mengalirkan sungai hikmah dan ilmu dari telaga tamadun silam,', ulasan: 'Mengangkat martabat bahasa sebagai bahasa ilmu dan kebijaksanaan.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Pilih satu lambang untuk menggambarkan kemuliaan bahasa ibunda.', sub: 'Laksana keris pusaka yang tajam berkilau atau sungai jernih yang membasahi minda.', t1: 'Fikirkan suluh atau pelita yang menyinari kegelapan jalan keilmuan.', diksi: ['suluh minda', 'sungai jernih', 'keris berlok', 'cahaya aksara'], contoh: 'ia laksana pelita yang tak pernah padam dihembus angin masa,', ulasan: 'Lambang pelita mewakili peranan bahasa sebagai penyuluh minda bangsa.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah pelita bahasa itu menyatukan pemikiran seluruh anak negeri?', sub: 'Menjadi tali penyambung rasa antara pulau, desa, dan lembah pertiwi.', t1: 'Tunjukkan bahawa bahasa yang satu membolehkan rakyat saling memahami isi hati.', diksi: ['penyambung rasa', 'merentas lembah', 'tali jiwa', 'sejiwa'], contoh: 'menghubungkan setiap detak rasa anak negeri dalam satu irama yang sama,', ulasan: 'Mengembangkan fungsi bahasa sebagai wahana integrasi perpaduan.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah maruah yang dirasai tatkala menuturkan bahasa sendiri di pentas antarabangsa?', sub: 'Rasa megah dan tidak malu mengungkapkan jati diri di hadapan masyarakat dunia.', t1: 'Bayangkan bendera bahasa yang berkibar di persidangan agung dunia.', diksi: ['megah bertutur', 'pentas dunia', 'tidak canggung', 'maruah bahasa'], contoh: 'tiada secebis rasa kerdil menjulang lidah warisan di gelanggang saujana,', ulasan: 'Menolak rasa rendah diri terhadap bahasa kebangsaan di persada antarabangsa.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah memelihara bahasa ibunda menyelamatkan jiwa bangsa daripada dijajah?', sub: 'Bangsa yang kehilangan bahasanya hakikatnya telah menyerahkan kedaulatannya.', t1: 'Renungkan bahawa penjajahan minda bermula tatkala bahasa sendiri diabaikan.', diksi: ['kedaulatan jiwa', 'merdeka akal', 'terkikis', 'benteng bahasa'], contoh: 'kerana bahasa adalah kubu terakhir kedaulatan jiwa yang merdeka,', ulasan: 'Memperdalam falsafah: bahasa sebagai benteng kemerdekaan jiwa.' },
+              { jalin: 'N — Natijah', q: 'Kunci rangkap dengan ikrar menjulang bahasa ibunda tanpa berbelah bahagi.', sub: 'Tegaskan bahawa selagi bulan dan bintang ada, bahasa bonda akan tetap bertakhta.', t1: 'Simpulkan dengan tekad memartabatkan bahasa di mana jua berada.', diksi: ['bertakhta selamanya', 'takkan hilang di dunia', 'panji bahasa'], contoh: 'yang akan terus dimartabatkan hingga ke titisan nafas terakhir.', ulasan: 'Natijah penuh semangat patriotik yang menyempurnakan Rangkap 2.' }
+            ]
+          },
+          {
+            num: 3,
+            role: 'Memperdalam Pemikiran',
+            issue: 'Kesantunan budi pekerti.',
+            bridgePrompt: 'Budi pekerti yang luhur di Rangkap 3 membentuk keteguhan prinsip di Rangkap 4. Bagaimanakah kecekalan anak muda menghadapi cabaran moden?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan tingkah laku santun anak muda tatkala berhadapan dengan orang tua.', sub: 'Menundukkan pandangan, menyusun sepuluh jari, dan bertutur dengan lemah lembut.', t1: 'Bayangkan anak muda melintasi di hadapan orang yang lebih berusia dengan membongkokkan badan sedikit.', diksi: ['tunduk santun', 'susun jari', 'tutur lemah lembut', 'adab timur'], contoh: 'Bila langkah dibimbing oleh adab merendah diri di hadapan usia,', ulasan: 'Membuka persoalan budi pekerti melalui perlakuan zahir yang terpuji.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah bicara yang sopan memadamkan api kemarahan dalam pergaulan?', sub: 'Kata-kata yang beralas, kemaafan yang dihulur, dan senyuman yang menyejukkan.', t1: 'Gambarkan perkataan "maaf" dan "terima kasih" yang sentiasa meniti di bibir.', diksi: ['kata beralas', 'senyuman penawar', 'kemaafan', 'sejuk bicara'], contoh: 'setiap tutur dihiasi kiasan sopan yang menyejukkan hati pendengar,', ulasan: 'Menonjolkan fungsi kesantunan berbahasa dalam memelihara silaturahim.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Apakah lambang yang sesuai untuk menggambarkan kehalusan budi pekerti?', sub: 'Laksana kilau emas tulen yang terendam di lumpur, atau embun pagi di hujung rumput.', t1: 'Fikirkan embun jernih yang membasahi daun tanpa mematahkan tangkainya.', diksi: ['titisan embun', 'emas tulen', 'air jernih', 'kuntum teratai'], contoh: 'ia bagai titisan embun hening yang membasahi bumi tanpa menggegar ranting,', ulasan: 'Metafora embun hening menggambarkan kelembutan yang penuh wibawa.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah kelembutan itu membina keperibadian yang dihormati semua pihak?', sub: 'Bukan bererti lemah atau penakut, melainkan tanda jiwa yang telah dididik luhur.', t1: 'Tunjukkan bahawa orang yang beradab disegani kawan dan dihormati lawan.', diksi: ['disegani', 'bukan tanda lemah', 'ketinggian jiwa', 'wibawa budi'], contoh: 'kelembutan yang melahirkan wibawa dan disegani sekelian kawan,', ulasan: 'Menghubungkan lambang kelembutan dengan ketinggian karisma diri.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah kesan budi pekerti ini terhadap keharmonian masyarakat sekeliling?', sub: 'Tiada persengketaan kasar, melainkan pergaulan yang penuh rasa hormat dan kasih.', t1: 'Bayangkan kehidupan komuniti yang saling memuliakan hak masing-masing.', diksi: ['harmoni mekar', 'tiada sengketa', 'saling memuliakan', 'teduh'], contoh: 'menjadikan setiap pertemuan jambatan kebaikan yang mendamaikan suasana,', ulasan: 'Impak budi pekerti terhadap ketenteraman sosial.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah budi pekerti menjadi pakaian terindah bagi insan yang berilmu?', sub: 'Ilmu setinggi langit tiada ertinya jika peribadi sombong dan angkuh.', t1: 'Renungkan bahawa padi yang makin berisi makin menunduk ke tanah.', diksi: ['resmi padi', 'ilmu beradab', 'bukan sombong', 'pakaian jiwa'], contoh: 'kerana ilmu tanpa kesopanan budi hanyalah kepongahan yang sia-sia,', ulasan: 'Memperluas dimensi: integrasi antara ilmu pengetahuan dengan adab.' },
+              { jalin: 'N — Natijah', q: 'Tutup rangkap ketiga dengan penegasan bahawa budi bahasa adalah pasak kemuliaan insan.', sub: 'Tegaskan bahawa hancur badan dikandung tanah, budi yang baik dikenang juga.', t1: 'Kunci dengan nilai keabadian budi pekerti dalam tamadun bangsa.', diksi: ['dikenang jua', 'pasak kemuliaan', 'abadi', 'harum budi'], contoh: 'dan di situlah letaknya keagungan peribadi yang takkan luput ditelan zaman.', ulasan: 'Natijah bermakna yang menyempurnakan Rangkap 3.' }
+            ]
+          },
+          {
+            num: 4,
+            role: 'Mematangkan Pemikiran',
+            issue: 'Keteguhan prinsip dan daya tahan.',
+            bridgePrompt: 'Prinsip yang teguh di Rangkap 4 mempersiapkan pemuda menjadi pemimpin watan di Rangkap 5. Bagaimanakah keazaman memimpin masa depan disempurnakan?',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan dugaan atau cabaran godaan zaman moden yang menguji anak muda.', sub: 'Arus hedonisme, godaan kebendaan, atau desakan meninggalkan prinsip kebenaran.', t1: 'Bayangkan ombak cabaran yang menghempas tebing pemikiran anak muda.', diksi: ['hempasan ombak', 'godaan kebendaan', 'angin fitnah', 'ranjau zaman'], contoh: 'Di hadapan gelombang zaman yang cuba merobohkan benteng pendirian,', ulasan: 'Membuka rangkap dengan gambaran cabaran dan godaan duniawi.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah anak muda berdiri tegak menepis godaan yang menyesatkan?', sub: 'Mendepakan dada, berani berkata benar, dan enggan menjual maruah demi kesenangan fana.', t1: 'Gambarkan langkah yang tidak berundur walau selangkah di hadapan tekanan salah.', diksi: ['berani berkata benar', 'enggan berundur', 'tepis godaan', 'maruah terpelihara'], contoh: 'mereka berdiri tegak menepis segala dakyah yang memudarkan kewarasan,', ulasan: 'Tindakan tegas mempertahankan kebenaran dan prinsip hidup.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Pilih lambang batu karang atau tebing waja yang tidak berganjak dihempas ombak.', sub: 'Laksana pasak karang di laut bergelora yang tetap utuh menentang arus badai.', t1: 'Fikirkan batu karang di tengah lautan yang tetap kukuh walaupun air berbuih ganas.', diksi: ['pasak karang', 'tebing waja', 'gunung kukuh', 'benteng kebal'], contoh: 'laksana karang pejal di tengah samudera yang tak pernah goyah oleh badai,', ulasan: 'Perlambangan karang pejal mencerminkan daya tahan dan ketabahan prinsip.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah keteguhan karang itu menjadi panduan bagi rakan-rakan yang lain?', sub: 'Menjadi tempat berteduh dan penunjuk arah moral tatkala yang lain keliru.', t1: 'Tunjukkan bahawa prinsip seorang pemuda boleh membimbing ramai insan lain.', diksi: ['penunjuk arah', 'mercu tanda', 'pembimbing kawan', 'pedoman'], contoh: 'menjadi pedoman yang memimpin perahu-perahu lain meredah gelita malam,', ulasan: 'Mengembangkan makna karang kepada fungsi kepimpinan moral.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah kejernihan jiwa yang diperoleh apabila berjaya mempertahankan prinsip?', sub: 'Rasa merdeka dalam sanubari kerana tidak menjadi hamba kepada nafsu kebendaan.', t1: 'Bayangkan rasa lapang dada tidur nyenyak kerana berpegang pada integriti.', diksi: ['merdeka sanubari', 'integriti bersih', 'lapang batin', 'tenang'], contoh: 'menghadiahkan ketenangan batin bahawa maruah diri tidak pernah terjual,', ulasan: 'Kesan positif integriti terhadap ketenangan jiwa peribadi.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah generasi yang berprinsip ini menjamin masa depan negara yang bersih?', sub: 'Bakal melahirkan pemimpin yang bebas rasuah, amanah, dan berani membela rakyat.', t1: 'Renungkan bahawa negara yang maju memerlukan anak muda yang berjiwa kental dan jujur.', diksi: ['pemimpin amanah', 'bebas cela', 'benteng watan', 'jujur membela'], contoh: 'kerana sebuah tamadun tertegak atas bahu generasi yang tidak boleh dibeli,', ulasan: 'Memperluas pemikiran: keteguhan prinsip sebagai benteng kedaulatan negara.' },
+              { jalin: 'N — Natijah', q: 'Tutup rangkap keempat dengan penegasan keberanian mempertahankan hak.', sub: 'Kunci dengan ikrar bahawa walau ribut melanda, prinsip hidup takkan pernah tumbang.', t1: 'Simpulkan bahawa jiwa yang berprinsip adalah wira sebenar bangsa.', diksi: ['pantang berundur', 'pantang tumbang', 'ksatria nusa'], contoh: 'yang memilih untuk tegak sebagai ksatria daripada tunduk sebagai hamba.', ulasan: 'Natijah yang bertenaga dan membakar semangat di akhir Rangkap 4.' }
+            ]
+          },
+          {
+            num: 5,
+            role: 'Menyempurnakan Pemikiran',
+            issue: 'Keazaman memimpin masa depan bangsa.',
+            bridgePrompt: 'Sajak anda tentang Jati Diri Generasi Muda telah lengkap 35 baris dari akar warisan hingga kepimpinan masa depan! Sila semak rubrik STPM 25 markah.',
+            lines: [
+              { jalin: 'J — Judul Persoalan', q: 'Gambarkan ufuk fajar baharu yang menanti dipimpin oleh generasi berilmu.', sub: 'Puncak bukit yang menghadap saujana fajar, lambang masa depan yang cerah dan penuh harapan.', t1: 'Bayangkan anak muda berdiri di puncak menatap ufuk timur yang mula memancarkan cahaya.', diksi: ['fajar baharu', 'puncak wibawa', 'saujana luas', 'cahaya harapan'], contoh: 'Kini di mercu wawasan menatap fajar masa depan yang mula merekah,', ulasan: 'Membuka rangkap penutup dengan lambang harapan fajar baharu.' },
+              { jalin: 'A — Arah Pemikiran', q: 'Bagaimanakah anak muda menghulurkan tangan bersedia memikul amanah nusa?', sub: 'Melangkah mara dengan dada bidang, memegang obor ilmu dan kepimpinan.', t1: 'Gambarkan langkah berani menyambut panji kepimpinan daripada generasi terdahulu.', diksi: ['memikul amanah', 'langkah berani', 'obor ilmu', 'panji nusa'], contoh: 'mereka melangkah gagah menyambut panji amanah pertiwi yang diserahkan,', ulasan: 'Tindakan fizikal menyambut panji melambangkan peralihan kepimpinan berwibawa.' },
+              { jalin: 'L — Lambang & Imejan', q: 'Pilih lambang burung helang atau kompas pedoman yang memandu pelayaran.', sub: 'Laksana rajawali perkasa yang terbang tinggi menembus awan tanpa melupakan sarang di bumi.', t1: 'Fikirkan rajawali yang sayapnya membentang luas menguasai angkasa.', diksi: ['sayap rajawali', 'kompas pedoman', 'saujana angkasa', 'terbang tinggi'], contoh: 'dengan sayap keilmuan yang bersedia terbang menguasai langit persada,', ulasan: 'Lambang sayap keilmuan mewakili kemampuan bersaing di persada antarabangsa.' },
+              { jalin: 'L — Mengembangkan Lambang', q: 'Bagaimanakah penerbangan tinggi itu tetap berpandukan nilai akar tradisi?', sub: 'Walau setinggi mana terbang di langit dunia, matanya tetap memandang tanah tumpah darah.', t1: 'Tunjukkan bahawa kejayaan antarabangsa dibawa pulang untuk memajukan kampung halaman.', diksi: ['ingat sarang', 'tanah tumpah darah', 'budi dibalas', 'setia'], contoh: 'namun kompas hatinya tetap terpacak setia pada tanah tumpah darah,', ulasan: 'Menghubungkan sayap tinggi dengan kompas kesetiaan kepada pertiwi.' },
+              { jalin: 'I — Impak & Nilai', q: 'Apakah transformasi gemilang yang dibawa kepada bangsa dan negara?', sub: 'Membangunkan ekonomi, menjulang martabat keadilan, dan menyatukan rakyat.', t1: 'Bayangkan negara yang makmur di mana rakyatnya hidup sejahtera di bawah pimpinan adil.', diksi: ['zaman gemilang', 'keadilan bertakhta', 'makmur watan', 'bahagia'], contoh: 'mengukir nama bangsa di lembaran sejarah sebagai peneraju peradaban beradab,', ulasan: 'Kesan kepimpinan generasi muda terhadap martabat tamadun bangsa.' },
+              { jalin: 'I — Memperluas Pemikiran', q: 'Bagaimanakah anda mengaitkan semula anjung rumah pusaka atau ukiran di Rangkap 1?', sub: 'Menunjukkan bahawa pemimpin masa depan ini lahir dari rahim warisan yang dipelajari di bait pertama.', t1: 'Gunakan frasa "ukiran moyang" atau "rumah pusaka" untuk menyempurnakan struktur puitis.', diksi: ['ukiran silam', 'akar pertama', 'sempurna kembara', 'warisan'], contoh: 'membuktikan bahawa ukiran nilai moyang di anjung semalam kini berbuah menjadi daulat,', ulasan: 'Teknik kesinambungan struktur: menyatukan awal dan akhir sajak.' },
+              { jalin: 'N — Natijah', q: 'Akhiri seluruh sajak dengan ikrar penegasan jati diri yang berkekalan.', sub: 'Satu baris penutup yang megah bahawa generasi ini bersedia menjadi benteng dan suluh pertiwi.', t1: 'Simpulkan bahawa jati diri anak watan takkan pernah padam hingga akhir zaman.', diksi: ['benteng watan', 'suluh abadi', 'anak merdeka', 'selamanya'], contoh: 'menegakkan maruah watan yang merdeka dengan budi, ilmu dan jiwa perkasa.', ulasan: 'Natijah agung yang menutup keseluruhan sajak 35 baris dengan cemerlang.' }
+            ]
+          }
+        ]
+      }
+    };
+
+    // Kamus 15 Gaya Bahasa STPM
+    const GAYA_BAHASA_DATABASE = [
+      { id: 'asonansi', name: 'Asonansi', def: 'Pengulangan bunyi vokal (a, e, i, o, u) dalam baris.', contoh: 'Biar basah bumi berpasir' },
+      { id: 'aliterasi', name: 'Aliterasi', def: 'Pengulangan bunyi konsonan dalam baris.', contoh: 'Tenang menepis taufan melanda' },
+      { id: 'anafora', name: 'Anafora', def: 'Pengulangan kata pada awal baris berurutan.', contoh: 'Di sini kita berjanji,\nDi sini kita berbakti,' },
+      { id: 'epifora', name: 'Epifora', def: 'Pengulangan kata di akhir baris berurutan.', contoh: 'Menatap fajar tiba,\nMendoakan bahagia tiba,' },
+      { id: 'simile', name: 'Simile', def: 'Perbandingan menggunakan kata (laksana, seperti, bak, ibarat).', contoh: 'Teguh jiwanya laksana karang' },
+      { id: 'personifikasi', name: 'Personifikasi', def: 'Sifat manusia kepada benda mati atau abstrak.', contoh: 'Bayu fajar berbisik mesra' },
+      { id: 'metafora', name: 'Metafora', def: 'Perbandingan kiasan terus konkrit + abstrak.', contoh: 'Lautan muafakat, perisai kesabaran' },
+      { id: 'hiperbola', name: 'Hiperbola', def: 'Pernyataan melampau daripada kenyataan.', contoh: 'Semangat membakar hingga ke puncak cakerawala' },
+      { id: 'paradoks', name: 'Paradoks', def: 'Pertentangan zahir tetapi ada kebenaran batin.', contoh: 'Dalam hening sunyi kutemui damai abadi' },
+      { id: 'repetisi', name: 'Repetisi', def: 'Pengulangan kata dalam rangkap.', contoh: 'Keringat, keringat jernih pembina nusa' },
+      { id: 'inversi', name: 'Inversi', def: 'Pembalikan susunan lazim ayat.', contoh: 'Berdiri kami di laman watan' },
+      { id: 'imejan', name: 'Imejan', def: 'Gambaran deria (penglihatan, sentuhan, dll).', contoh: 'Kilau embun menitis di telapak tangan' },
+      { id: 'perlambangan', name: 'Perlambangan', def: 'Objek mewakili konsep abstrak.', contoh: 'Taut jemari (muafakat), akar (warisan)' },
+      { id: 'responsi', name: 'Responsi', def: 'Pengulangan kata di tengah-tengah baris berurutan.', contoh: 'Biar subur pohon pusaka,\nBiar teguh jiwa budiman,' },
+      { id: 'citra', name: 'Citra', def: 'Gambaran suasana menyeluruh dalam bait.', contoh: 'Citra perkampungan harmoni' }
+    ];
+
+    // --- KEADAAN APLIKASI (STATE) ---
+    const STORAGE_KEY = 'JALIN_SAJAK_COACH_V2_DATA';
+
+    let appState = {
+      view: 'home',
+      mode: 'pemulihan',
+      themeId: 'kesukanan',
+      customTheme: { title: '', desc: '' },
+      currentStanza: 1, // 1 to 5
+      currentLine: 1,   // 1 to 7
+      // 5 rangkap x 7 baris = 35 baris data
+      linesRecord: Array.from({ length: 5 }, () =>
+        Array.from({ length: 7 }, () => ({ draft: '', done: false }))
+      ),
+      rubricScores: {
+        a1: 1,
+        a2: 2,
+        b: [2, 2, 2, 2],
+        c1: 2,
+        linesCount: 35,
+        stanzasCount: 5,
+        gaya: [
+          { type: 'metafora', score: 2 },
+          { type: 'personifikasi', score: 2 },
+          { type: 'asonansi', score: 2 },
+          { type: 'simile', score: 2 }
+        ]
+      },
+      finalPoemTitle: ''
+    };
+
+    // --- PEMULAAN (INIT) ---
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      renderThemesList();
+      updateBadgeDisplay();
+      navigateTo(appState.view || 'home');
+    });
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        console.warn('Gagal menyimpan ke storan:', e);
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          appState = Object.assign(appState, parsed);
+        }
+      } catch (e) {
+        console.warn('Gagal memuatkan data:', e);
+      }
+    }
+
+    function confirmResetProgress() {
+      if (confirmModalDialog('Adakah anda pasti ingin memulakan semula latihan dari awal?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    function confirmModalDialog(msg) {
+      // Mengelakkan sekatan jika confirm disekat
+      try {
+        return window.confirm(msg);
+      } catch (e) {
+        return true;
+      }
+    }
+
+    // --- SISTEM NAVIGASI PANDANGAN ---
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view-panel').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.remove('hidden');
+        appState.view = viewId;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        saveState();
+
+        if (viewId === 'planner') {
+          renderRoadmapPlanner();
+        } else if (viewId === 'coach') {
+          renderCoachTaskScreen();
+        } else if (viewId === 'review') {
+          renderReviewScreen();
+        }
+      }
+    }
+
+    function selectMode(mode) {
+      appState.mode = mode;
+      updateBadgeDisplay();
+      saveState();
+      navigateTo('theme');
+    }
+
+    function updateBadgeDisplay() {
+      const badge = document.getElementById('badge-mode');
+      if (!badge) return;
+      badge.classList.remove('hidden');
+      if (appState.mode === 'pemulihan') {
+        badge.innerText = 'Mod A: Pemulihan';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-sky-950 text-sky-400 border border-sky-800';
+      } else if (appState.mode === 'pengayaan') {
+        badge.innerText = 'Mod B: Pengayaan';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/30';
+      } else {
+        badge.innerText = 'Simulasi STPM';
+        badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-amber-950 text-amber-300 border border-amber-800';
+      }
+    }
+
+    // --- LANGKAH 1: PILIH TEMA ---
+    function renderThemesList() {
+      const container = document.getElementById('themes-list-container');
+      if (!container) return;
+
+      const keys = Object.keys(THEMES_V2);
+      container.innerHTML = keys.map(k => {
+        const t = THEMES_V2[k];
+        const isSel = (appState.themeId === k);
+        return `
+          <div onclick="selectThemeKey('${k}')" class="cursor-pointer p-3.5 rounded-xl border transition ${isSel ? 'bg-gold-500/10 border-gold-500 text-white shadow-md' : 'bg-navy-900 border-slate-800 text-slate-300 hover:border-slate-700'}">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-xs sm:text-sm text-white">${t.title}</span>
+              <i class="fa-solid ${isSel ? 'fa-circle-check text-gold-400' : 'fa-circle text-slate-700'} text-xs"></i>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">${t.desc}</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectThemeKey(key) {
+      appState.themeId = key;
+      toggleCustomTheme(false);
+      renderThemesList();
+      saveState();
+    }
+
+    function toggleCustomTheme(isCustom) {
+      const box = document.getElementById('custom-theme-box');
+      const radio = document.getElementById('radio-custom-theme');
+      if (isCustom) {
+        radio.checked = true;
+        box.classList.remove('hidden');
+        appState.themeId = 'custom';
+      } else {
+        radio.checked = false;
+        box.classList.add('hidden');
+      }
+      renderThemesList();
+    }
+
+    function confirmThemeAndGoToPlanner() {
+      if (appState.themeId === 'custom') {
+        const val = document.getElementById('input-custom-title').value.trim();
+        if (!val) {
+          alert('Sila masukkan tajuk tema pilihan anda.');
+          return;
+        }
+        appState.customTheme.title = val;
+      }
+      saveState();
+      navigateTo('planner');
+    }
+
+    // --- LANGKAH 2: PETA PEMIKIRAN 5 RANGKAP (ROADMAP) ---
+    function getActiveThemeObject() {
+      if (appState.themeId === 'custom') {
+        return {
+          title: appState.customTheme.title || 'Tema Sendiri',
+          stanzas: THEMES_V2['kesukanan'].stanzas.map((s, idx) => ({
+            ...s,
+            issue: `Persoalan Rangkap ${idx + 1} berkaitan ${appState.customTheme.title || 'tema'}`
+          }))
+        };
+      }
+      return THEMES_V2[appState.themeId] || THEMES_V2['kesukanan'];
+    }
+
+    function renderRoadmapPlanner() {
+      const container = document.getElementById('roadmap-cards-container');
+      if (!container) return;
+
+      const themeObj = getActiveThemeObject();
+
+      container.innerHTML = themeObj.stanzas.map((s, idx) => `
+        <div class="p-3.5 rounded-xl bg-navy-900 border border-slate-800 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-lg bg-gold-500/20 text-gold-400 font-mono font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">
+            R${idx + 1}
+          </span>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] uppercase font-bold text-slate-400">${s.role}</span>
+              <span class="text-[10px] font-mono text-emerald-400">7 Baris</span>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">${s.issue}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function startWritingStanza(stanzaNum, lineNum = 1) {
+      appState.currentStanza = stanzaNum;
+      appState.currentLine = lineNum;
+      saveState();
+      navigateTo('coach');
+    }
+
+    // --- LANGKAH 3: SATU SKRIN, SATU TUGASAN (ENJIN BIMBINGAN TERAS) ---
+    function renderCoachTaskScreen() {
+      const sIdx = appState.currentStanza - 1;
+      const lIdx = appState.currentLine - 1;
+      const themeObj = getActiveThemeObject();
+      const currentStanzaData = themeObj.stanzas[sIdx];
+      const currentLineData = currentStanzaData.lines[lIdx];
+
+      // 1. Bar Indikator Atas
+      document.getElementById('progress-indicator-text').innerText =
+        `Rangkap ${appState.currentStanza}/5 — Baris ${appState.currentLine}/7`;
+      
+      const totalBarisNumber = (sIdx * 7) + appState.currentLine;
+      document.getElementById('total-baris-counter').innerText = `Langkah: ${totalBarisNumber}/35`;
+
+      document.getElementById('coach-mode-pill').innerText =
+        appState.mode === 'pemulihan' ? 'Mod A' : (appState.mode === 'pengayaan' ? 'Mod B' : 'Simulasi');
+
+      // 2. Visual Pills 5 Rangkap
+      renderStanzaPills();
+
+      // 3. Maklumat Header Tugasan
+      document.getElementById('current-stanza-header').innerText =
+        `Rangkap ${appState.currentStanza}: ${currentStanzaData.role}`;
+      document.getElementById('current-jalin-pill').innerText = currentLineData.jalin.split('—')[0].trim();
+      document.getElementById('current-stanza-question-text').innerText = currentStanzaData.issue;
+      document.getElementById('current-line-badge').innerText = `B${appState.currentLine}`;
+
+      // 4. Soalan Pembimbing Utama Mengikut Mod
+      const qEl = document.getElementById('coach-main-question');
+      const subEl = document.getElementById('coach-sub-guidance');
+
+      if (appState.mode === 'pengayaan') {
+        qEl.innerText = `"${currentLineData.q}"`;
+        subEl.innerText = `Cabaran Pengayaan: Kembangkan gambaran ini dengan lambang asli yang mencerminkan ${currentStanzaData.issue} secara tersirat.`;
+      } else if (appState.mode === 'simulasi') {
+        qEl.innerText = `"${currentLineData.q}"`;
+        subEl.innerText = `Mod Simulasi: Sila gunakan kebijaksanaan sendiri tanpa bantuan bank diksi. Tulis baris ini di atas kertas.`;
+      } else {
+        // Mod Pemulihan
+        qEl.innerText = `"${currentLineData.q}"`;
+        subEl.innerText = currentLineData.sub;
+      }
+
+      // 5. Input Draf Baris
+      const draftInput = document.getElementById('input-coach-line-draft');
+      draftInput.value = appState.linesRecord[sIdx][lIdx].draft || '';
+      draftInput.oninput = (e) => {
+        appState.linesRecord[sIdx][lIdx].draft = e.target.value;
+        saveState();
+      };
+
+      // 6. Muatkan Data Petunjuk 3 Tahap
+      populateHints(currentLineData);
+      document.getElementById('coach-hint-box').classList.add('hidden');
+
+      // 7. Butang Kembali
+      const btnBack = document.getElementById('btn-back-step');
+      btnBack.disabled = (appState.currentStanza === 1 && appState.currentLine === 1);
+    }
+
+    function renderStanzaPills() {
+      const container = document.getElementById('stanzas-progress-pills');
+      if (!container) return;
+
+      container.innerHTML = [1, 2, 3, 4, 5].map(num => {
+        const sIdx = num - 1;
+        const isCurrent = appState.currentStanza === num;
+        const allDone = appState.linesRecord[sIdx].every(l => l.done);
+        const someDone = appState.linesRecord[sIdx].some(l => l.done);
+
+        let bgClass = 'bg-navy-900 border-slate-800 text-slate-500';
+        if (isCurrent) {
+          bgClass = 'bg-gold-500/20 border-gold-500 text-gold-300 font-bold';
+        } else if (allDone) {
+          bgClass = 'bg-emerald-950/60 border-emerald-600 text-emerald-400';
+        } else if (someDone) {
+          bgClass = 'bg-navy-900 border-slate-700 text-slate-300';
+        }
+
+        return `
+          <button onclick="startWritingStanza(${num}, 1)" class="py-1 px-1.5 rounded-lg border text-[10px] transition text-center truncate ${bgClass}">
+            R${num} ${allDone ? '✓' : ''}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // --- PENGENDALIAN PETUNJUK 3 TAHAP ---
+    function toggleHintBox() {
+      if (appState.mode === 'simulasi') {
+        showToast('Mod Simulasi menyembunyikan bantuan untuk menguji minda peperiksaan anda.');
+        return;
+      }
+      const box = document.getElementById('coach-hint-box');
+      box.classList.toggle('hidden');
+      switchHintLevel(1);
+    }
+
+    function switchHintLevel(lvl) {
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`btn-hint-lvl-${i}`);
+        const cnt = document.getElementById(`hint-lvl-content-${i}`);
+        if (i === lvl) {
+          btn.className = 'flex-1 py-1.5 font-bold text-gold-400 border-b-2 border-gold-400';
+          cnt.classList.remove('hidden');
+        } else {
+          btn.className = 'flex-1 py-1.5 font-bold text-slate-400 hover:text-slate-200';
+          cnt.classList.add('hidden');
+        }
+      }
+    }
+
+    function populateHints(lineData) {
+      document.getElementById('hint-lvl-content-1').innerText = lineData.t1;
+      
+      const diksiBox = document.getElementById('hint-diksi-tags');
+      diksiBox.innerHTML = lineData.diksi.map(d => `
+        <span class="px-2 py-0.5 rounded-full bg-navy-900 border border-slate-700 text-gold-300 font-mono text-[10px]">
+          #${d}
+        </span>
+      `).join('');
+
+      document.getElementById('hint-example-quote').innerText = `"${lineData.contoh}"`;
+      document.getElementById('hint-example-explanation').innerText = lineData.ulasan;
+    }
+
+    // --- TINDAKAN SETERUSNYA & JAMBATAN ANTARA RANGKAP ---
+    function markLineDoneAndAdvance() {
+      const sIdx = appState.currentStanza - 1;
+      const lIdx = appState.currentLine - 1;
+
+      // Tandakan baris ini selesai di kertas
+      appState.linesRecord[sIdx][lIdx].done = true;
+      saveState();
+
+      if (appState.currentLine < 7) {
+        // Teruskan ke baris seterusnya dalam rangkap yang sama
+        appState.currentLine += 1;
+        saveState();
+        renderCoachTaskScreen();
+      } else {
+        // Baris 7 siap: Tampilkan Jambatan Idea ke Rangkap Seterusnya
+        showBridgeScreen();
+      }
+    }
+
+    function goToPreviousLine() {
+      if (appState.currentLine > 1) {
+        appState.currentLine -= 1;
+      } else if (appState.currentStanza > 1) {
+        appState.currentStanza -= 1;
+        appState.currentLine = 7;
+      }
+      saveState();
+      renderCoachTaskScreen();
+    }
+
+    function showBridgeScreen() {
+      const sIdx = appState.currentStanza - 1;
+      const themeObj = getActiveThemeObject();
+      const currentStanzaData = themeObj.stanzas[sIdx];
+
+      if (appState.currentStanza >= 5) {
+        // Seluruh 5 Rangkap (35 Baris) telah siap!
+        showToast('Tahniah! 5 Rangkap (35 Baris) sajak telah siap.');
+        navigateTo('review');
+        return;
+      }
+
+      const nextStanzaNum = appState.currentStanza + 1;
+      const nextStanzaData = themeObj.stanzas[nextStanzaNum - 1];
+
+      document.getElementById('bridge-complete-tag').innerText = `Rangkap ${appState.currentStanza} Telah Siap Ditulis!`;
+      document.getElementById('bridge-narrative-text').innerText = `"${currentStanzaData.bridgePrompt}"`;
+      document.getElementById('bridge-next-target-question').innerText = `Rangkap ${nextStanzaNum}: ${nextStanzaData ? nextStanzaData.issue : ''}`;
+
+      navigateTo('bridge');
+    }
+
+    function confirmThemeAndGoToPlanner() {
+      if (appState.themeId === 'custom') {
+        const val = document.getElementById('input-custom-title').value.trim();
+        if (!val) {
+          showToast('Sila masukkan tajuk tema pilihan anda.');
+          return;
+        }
+        appState.customTheme.title = val;
+      }
+      saveState();
+      navigateTo('planner');
+    }
+
+    function advanceToNextStanzaAfterBridge() {
+      appState.currentStanza += 1;
+      appState.currentLine = 1;
+      saveState();
+      navigateTo('coach');
+    }
+
+    // --- LANGKAH 4: SEMAKAN SKEMA STPM 25 MARKAH ---
+    function renderReviewScreen() {
+      document.getElementById('final-poem-title').value = appState.finalPoemTitle || '';
+      document.getElementById('final-poem-title').oninput = (e) => {
+        appState.finalPoemTitle = e.target.value;
+        saveState();
+      };
+
+      const themeObj = getActiveThemeObject();
+      const bList = document.getElementById('rubric-b-list');
+      bList.innerHTML = [0, 1, 2, 3].map(i => {
+        const qTitle = themeObj.stanzas[i] ? themeObj.stanzas[i].issue : `Persoalan ${i + 1}`;
+        const currentScore = appState.rubricScores.b[i] ?? 2;
+        return `
+          <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between gap-2">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase">Persoalan Rangkap ${i + 1}</span>
+              <p class="text-xs text-white font-medium">${qTitle}</p>
+            </div>
+            <select onchange="updatePersoalanScore(${i}, this.value)" class="bg-navy-900 border border-slate-700 rounded px-2 py-1 text-xs text-white shrink-0">
+              <option value="2" ${currentScore === 2 ? 'selected' : ''}>Jelas & Berkembang (2m)</option>
+              <option value="1" ${currentScore === 1 ? 'selected' : ''}>Kurang Jelas (1m)</option>
+              <option value="0" ${currentScore === 0 ? 'selected' : ''}>Lemah (0m)</option>
+            </select>
+          </div>
+        `;
+      }).join('');
+
+      renderGayaSlots();
+      calculateRubricScores();
+    }
+
+    function renderGayaSlots() {
+      const container = document.getElementById('rubric-d-slots');
+      if (!container) return;
+
+      container.innerHTML = [0, 1, 2, 3].map(idx => {
+        const item = appState.rubricScores.gaya[idx] || { type: GAYA_BAHASA_DATABASE[idx].id, score: 2 };
+        return `
+          <div class="p-2.5 rounded-lg bg-navy-950 border border-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-gold-400 font-bold uppercase">Jenis ${idx + 1}</span>
+              <select onchange="updateGayaItem(${idx}, 'score', this.value)" class="bg-navy-900 border border-slate-700 rounded px-1.5 py-0.5 text-[11px] text-white">
+                <option value="2" ${item.score == 2 ? 'selected' : ''}>Jelas (2m)</option>
+                <option value="1" ${item.score == 1 ? 'selected' : ''}>Kurang (1m)</option>
+                <option value="0" ${item.score == 0 ? 'selected' : ''}>Tiada (0m)</option>
+              </select>
+            </div>
+            <select onchange="updateGayaItem(${idx}, 'type', this.value)" class="w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-xs text-white">
+              ${GAYA_BAHASA_DATABASE.map(g => `
+                <option value="${g.id}" ${item.type === g.id ? 'selected' : ''}>${g.name}</option>
+              `).join('')}
+            </select>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updatePersoalanScore(idx, val) {
+      appState.rubricScores.b[idx] = parseInt(val, 10);
+      saveState();
+      calculateRubricScores();
+    }
+
+    function updateGayaItem(idx, field, val) {
+      if (field === 'score') {
+        appState.rubricScores.gaya[idx].score = parseInt(val, 10);
+      } else {
+        appState.rubricScores.gaya[idx].type = val;
+      }
+      saveState();
+      calculateRubricScores();
+    }
+
+    function calculateRubricScores() {
+      const a1 = parseInt(document.getElementById('sel-a1')?.value || 1, 10);
+      const a2 = parseInt(document.getElementById('sel-a2')?.value || 2, 10);
+      const subA = a1 + a2;
+      document.getElementById('score-kreativiti').innerText = `${subA} / 3`;
+      document.getElementById('subtotal-a').innerText = `${subA}/3`;
+
+      const subB = appState.rubricScores.b.reduce((a, b) => a + b, 0);
+      document.getElementById('score-persoalan').innerText = `${subB} / 8`;
+      document.getElementById('subtotal-b').innerText = `${subB}/8`;
+
+      const c1 = parseInt(document.getElementById('sel-c1')?.value || 2, 10);
+      const lines = parseInt(document.getElementById('inp-lines-count')?.value || 35, 10);
+      const stanzas = parseInt(document.getElementById('inp-stanzas-count')?.value || 5, 10);
+
+      const c2 = (lines >= 30 && lines <= 40) ? 2 : (lines > 0 ? 1 : 0);
+      const c3 = (stanzas >= 4) ? 2 : (stanzas > 0 ? 1 : 0);
+      const subC = c1 + c2 + c3;
+      document.getElementById('score-teknik').innerText = `${subC} / 6`;
+      document.getElementById('subtotal-c').innerText = `${subC}/6`;
+
+      // Pengesahan 4 JENIS gaya bahasa berlainan
+      const types = appState.rubricScores.gaya.map(g => g.type);
+      const uniqueCount = new Set(types).size;
+      let subD = appState.rubricScores.gaya.reduce((acc, curr) => acc + curr.score, 0);
+      if (uniqueCount < 4) {
+        subD = Math.min(subD, uniqueCount * 2);
+      }
+      document.getElementById('score-gaya').innerText = `${subD} / 8`;
+      document.getElementById('subtotal-d').innerText = `${subD}/8 ${uniqueCount < 4 ? '(Ada jenis bertindih)' : ''}`;
+
+      const total = subA + subB + subC + subD;
+      document.getElementById('final-total-score').innerText = `${total} / 25`;
+      return total;
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast-notify');
+      const toastText = document.getElementById('toast-text');
+      if (!toast || !toastText) return;
+      toastText.innerText = text;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    function saveAndFinishSession() {
+      // Simpan input tajuk dan nilai terkini
+      const titleInput = document.getElementById('final-poem-title');
+      if (titleInput) {
+        appState.finalPoemTitle = titleInput.value.trim();
+      }
+      const totalScore = calculateRubricScores();
+      saveState();
+
+      // Kemas kini paparan modal pengesahan
+      const themeObj = getActiveThemeObject();
+      document.getElementById('modal-save-title').innerText = appState.finalPoemTitle || '(Belum Diberi Tajuk)';
+      document.getElementById('modal-save-theme').innerText = themeObj.title;
+      document.getElementById('modal-save-score').innerText = `${totalScore} / 25 Markah`;
+
+      // Buka modal simpan
+      openModal('modal-save-success');
+      showToast('Latihan dan markah anda telah selamat disimpan.');
+    }
+
+    function downloadPoemPDF() {
+      try {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const themeObj = getActiveThemeObject();
+        const title = appState.finalPoemTitle || '(Belum Diberi Tajuk)';
+        const totalScore = document.getElementById('final-total-score')?.innerText || '25 / 25';
+        const dateStr = new Date().toLocaleDateString('ms-MY', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 15;
+        let y = 18;
+
+        // --- KEPALA DOKUMEN (HEADER) ---
+        doc.setFillColor(11, 17, 38); // Navy 900
+        doc.rect(0, 0, pageWidth, 28, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(14);
+        doc.setTextColor(212, 175, 55); // Gold
+        doc.text('JALIN SAJAK COACH STPM', margin, 11);
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(226, 232, 240);
+        doc.text('Kesusasteraan Melayu Komunikatif (KMK) Tingkatan Enam', margin, 17);
+        doc.text('Pembangun: Nuraidah binti Mustapah (SMK Tamparuli)', margin, 22);
+
+        // Tarikh di kanan
+        doc.setFontSize(8);
+        doc.setTextColor(203, 213, 225);
+        doc.text(`Tarikh: ${dateStr}`, pageWidth - margin, 17, { align: 'right' });
+        doc.text(`Mod: ${appState.mode.toUpperCase()}`, pageWidth - margin, 22, { align: 'right' });
+
+        y = 36;
+
+        // --- KOTAK MAKLUMAT LATIHAN & SKOR ---
+        doc.setDrawColor(203, 213, 225);
+        doc.setFillColor(248, 250, 252);
+        doc.roundedRect(margin, y, pageWidth - (margin * 2), 26, 2, 2, 'FD');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(15, 23, 42);
+        doc.text('REKOD PENGHASILAN SAJAK TEKNIK JALIN', margin + 4, y + 6);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(51, 65, 85);
+        doc.text(`Tajuk Sajak: ${title}`, margin + 4, y + 13);
+        doc.text(`Tema Soalan: ${themeObj.title}`, margin + 4, y + 19);
+
+        // Badge Skor
+        doc.setFillColor(212, 175, 55);
+        doc.roundedRect(pageWidth - margin - 44, y + 5, 40, 16, 2, 2, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8);
+        doc.setTextColor(11, 17, 38);
+        doc.text('ANGGARAN SKOR', pageWidth - margin - 24, y + 10.5, { align: 'center' });
+        doc.setFontSize(11);
+        doc.text(totalScore, pageWidth - margin - 24, y + 17, { align: 'center' });
+
+        y += 33;
+
+        // --- BAHAGIAN 1: PETA 5 PERSOALAN RANGKAP ---
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(11, 17, 38);
+        doc.text('1. PETA KESINAMBUNGAN 5 PERSOALAN (35 BARIS)', margin, y);
+        y += 4;
+
+        themeObj.stanzas.forEach((s, idx) => {
+          doc.setFillColor(241, 245, 249);
+          doc.rect(margin, y, pageWidth - (margin * 2), 7, 'F');
+          
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(8.5);
+          doc.setTextColor(184, 148, 40);
+          doc.text(`R${idx + 1} (${s.role}):`, margin + 2, y + 4.8);
+
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(30, 41, 59);
+          const issueTxt = doc.splitTextToSize(s.issue, pageWidth - (margin * 2) - 45);
+          doc.text(issueTxt, margin + 42, y + 4.8);
+
+          y += 8;
+        });
+
+        y += 3;
+
+        // --- BAHAGIAN 2: SALINAN DRAF BAIT SAJAK (JIKA ADA DICATAT) ---
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(11, 17, 38);
+        doc.text('2. CATATAN DRAF SAJAK (TULISAN TANGAN PADA KERTAS KAJIAN)', margin, y);
+        y += 5;
+
+        let hasDraft = false;
+        appState.linesRecord.forEach((st) => {
+          st.forEach((ln) => {
+            if (ln.draft && ln.draft.trim()) hasDraft = true;
+          });
+        });
+
+        if (hasDraft) {
+          appState.linesRecord.forEach((st, sIdx) => {
+            // Periksa sama ada perlu muka surat baharu
+            if (y > 255) {
+              doc.addPage();
+              y = 20;
+            }
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8.5);
+            doc.setTextColor(15, 23, 42);
+            doc.text(`Rangkap ${sIdx + 1}:`, margin, y);
+            y += 4;
+
+            doc.setFont('times', 'italic');
+            doc.setFontSize(9);
+            doc.setTextColor(51, 65, 85);
+            st.forEach((ln) => {
+              if (ln.draft && ln.draft.trim()) {
+                const lineTxt = doc.splitTextToSize(`   ${ln.draft.trim()}`, pageWidth - (margin * 2) - 10);
+                doc.text(lineTxt, margin + 4, y);
+                y += 4.5;
+              }
+            });
+            y += 2;
+          });
+        } else {
+          doc.setFont('helvetica', 'italic');
+          doc.setFontSize(8.5);
+          doc.setTextColor(100, 116, 139);
+          doc.text('* Pelajar menulis sepenuhnya 5 rangkap (35 baris) secara fizikal di atas kertas peperiksaan.', margin + 2, y);
+          y += 6;
+        }
+
+        // --- BAHAGIAN 3: PECAHAN RUBRIK SKEMA 25 MARKAH STPM ---
+        if (y > 230) {
+          doc.addPage();
+          y = 20;
+        } else {
+          y += 4;
+        }
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(11, 17, 38);
+        doc.text('3. RUMUSAN PENILAIAN SKEMA PEMARKAHAN STPM (25 MARKAH)', margin, y);
+        y += 5;
+
+        // Kotak grid 4 kriteria
+        const colW = (pageWidth - (margin * 2) - 6) / 4;
+        const scores = [
+          { label: 'A. Kreativiti', val: document.getElementById('score-kreativiti')?.innerText || '3 / 3' },
+          { label: 'B. Persoalan', val: document.getElementById('score-persoalan')?.innerText || '8 / 8' },
+          { label: 'C. Teknik', val: document.getElementById('score-teknik')?.innerText || '6 / 6' },
+          { label: 'D. Gaya Bahasa', val: document.getElementById('score-gaya')?.innerText || '8 / 8' },
+        ];
+
+        scores.forEach((sc, i) => {
+          const xPos = margin + (i * (colW + 2));
+          doc.setFillColor(248, 250, 252);
+          doc.setDrawColor(226, 232, 240);
+          doc.roundedRect(xPos, y, colW, 14, 1.5, 1.5, 'FD');
+
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(7.5);
+          doc.setTextColor(71, 85, 105);
+          doc.text(sc.label, xPos + (colW / 2), y + 5, { align: 'center' });
+
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9.5);
+          doc.setTextColor(184, 148, 40);
+          doc.text(sc.val, xPos + (colW / 2), y + 10.5, { align: 'center' });
+        });
+
+        y += 20;
+
+        // Ruang Tandatangan Guru
+        if (y > 260) {
+          doc.addPage();
+          y = 25;
+        }
+
+        doc.setDrawColor(203, 213, 225);
+        doc.line(margin, y, margin + 65, y);
+        doc.line(pageWidth - margin - 65, y, pageWidth - margin, y);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(100, 116, 139);
+        doc.text('Tandatangan Pelajar', margin, y + 4);
+        doc.text('Pengesahan & Ulasan Guru KMK', pageWidth - margin - 65, y + 4);
+
+        // Simpan fail PDF
+        const safeTitle = (appState.finalPoemTitle || 'Sajak_STPM').replace(/[^a-zA-Z0-9_-]/g, '_');
+        doc.save(`Ringkasan_Latihan_Sajak_${safeTitle}.pdf`);
+        showToast('Dokumen PDF berjaya dimuat turun!');
+      } catch (err) {
+        console.error('Ralat menjana PDF:', err);
+        showToast('Ralat semasa menjana PDF. Sila cuba sebentar lagi.');
+      }
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
